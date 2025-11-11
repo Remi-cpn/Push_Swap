@@ -1,0 +1,105 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rcompain <rcompain@student.42angouleme.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/10/14 17:34:44 by rcompain          #+#    #+#              #
+#    Updated: 2025/11/07 18:28:48 by rcompain         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                   SETTINGS                                   #
+# **************************************************************************** #
+
+NAME = libft.a
+
+CC = cc
+
+FLAGS = -Werror -Wextra -Wall
+
+# **************************************************************************** #
+#                                   SOURCES                                    #
+# **************************************************************************** #
+
+SRC = 		ft_atoi.c \
+			ft_bzero.c \
+			ft_calloc.c \
+			ft_isalnum.c \
+			ft_isalpha.c \
+			ft_isascii.c \
+			ft_isdigit.c \
+			ft_isprint.c \
+			ft_itoa.c \
+			ft_split.c \
+			ft_strchr.c \
+			ft_strdup.c \
+			ft_strjoin.c \
+			ft_strlcat.c \
+			ft_strlcpy.c \
+			ft_strlen.c \
+			ft_strmapi.c \
+			ft_striteri.c \
+			ft_strncmp.c \
+			ft_strnstr.c \
+			ft_strrchr.c \
+			ft_strtrim.c \
+			ft_substr.c \
+			ft_tolower.c \
+			ft_toupper.c \
+
+SRC_PUT =	ft_putchar_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_putstr_fd.c \
+
+SRC_MEM = 	ft_memchr.c \
+			ft_memcmp.c \
+			ft_memcpy.c \
+			ft_memmove.c \
+			ft_memset.c \
+
+SRC_LST =	ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
+
+SRC_PTF =	ft_printf.c \
+			ft_putstr.c \
+			ft_putnbrbase.c \
+			ft_putchar.c \
+			ft_putadrbase.c \
+			ft_putnbr.c \
+
+SOURCES = $(SRC) $(SRC_PUT) $(SRC_MEM) $(SRC_LST) $(SRC_PTF)
+
+OBJECTS = ${SOURCES:.c=.o}
+
+# **************************************************************************** #
+#                                   RULES                                      #
+# **************************************************************************** #
+
+%.o: %.c
+	@${CC} ${FLAG} -c $< -o $@
+
+${NAME}: ${OBJECTS} 
+	@ar rcs ${NAME} ${OBJECTS} 
+
+all: ${NAME}
+
+clean:
+	@rm -rf ${OBJECTS}
+
+fclean: clean
+	@rm -rf ${NAME}
+
+re: fclean all
+
+.PHONY: all clean fclean re
