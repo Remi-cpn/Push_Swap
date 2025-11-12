@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/11 12:52:27 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/12 15:37:00 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -16,7 +16,7 @@
 
 NAME		= push_swap
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 RM			= rm -f
 AR			= ar rcs
 
@@ -34,7 +34,8 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 #                                   SOURCES                                    #
 # **************************************************************************** #
 
-SRC			= $(SRC_DIR)/main.c
+SRC			= $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/swap_push_utils.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 
@@ -104,7 +105,7 @@ progress_bar_libft:
 		fi; \
 		pct=$$((i * 100 / $$total)); \
 		printf "\r📚  Libft  [$$bar$$spaces] Loading:%3d%%" $$pct; \
-		sleep 0.05; \
+		sleep 0.01; \
 		i=$$((i+1)); \
 	done; \
 	printf "\033[2K\r📚  Libft %s [██████████████████████████████] \033[32mSuccess !\033[0m\n\n"
@@ -121,7 +122,7 @@ progress_bar_project:
 		fi; \
 		pct=$$((i * 100 / $$total)); \
 		printf "\r📝 Project [$$bar$$spaces] Loading:%3d%%" $$pct; \
-		sleep 0.03; \
+		sleep 0.01; \
 		i=$$((i+1)); \
 	done; \
 	printf "\033[2K\r📝 Project %s[██████████████████████████████] \033[32mSuccess !\033[0m\n\n"
