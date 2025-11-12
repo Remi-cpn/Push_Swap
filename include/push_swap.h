@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/12 15:31:56 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:43:21 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,22 @@ int		main(int ac, char **av);
 typedef struct s_stack
 {
 	int		*tab;
+	size_t	size;
 }	t_stack;
 
 /* --------------------------------- RULES --------------------------------- */
 
+/* swap_push_utils */
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+
+/* rotate_utils */
+
+
+
+/* reverse_rotate_utils */
 
 #endif // !DEBUG
