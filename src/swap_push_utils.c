@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:29:31 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/12 18:16:32 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:44:07 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ void	ss(t_stack *a, t_stack *b)
 {
 	int	tmp;
 
-	tmp = a->tab[0];
-	a->tab[0] = a->tab[1];
-	a->tab[1] = tmp;
-	tmp = b->tab[0];
-	b->tab[0] = b->tab[1];
-	b->tab[1] = tmp;
+	if (a->size > 1)
+	{
+		tmp = a->tab[0];
+		a->tab[0] = a->tab[1];
+		a->tab[1] = tmp;
+	}
+	if (b->size > 1)
+	{
+		tmp = b->tab[0];
+		b->tab[0] = b->tab[1];
+		b->tab[1] = tmp;
+	}
 }
 
 /**

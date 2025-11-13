@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/12 15:37:00 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/13 16:04:22 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -35,7 +35,10 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 # **************************************************************************** #
 
 SRC			= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/swap_push_utils.c
+			  $(SRC_DIR)/swap_push_utils.c \
+			  $(SRC_DIR)/rotate_utils.c \
+			  $(SRC_DIR)/reverse_rotate_utils.c \
+			  $(SRC_DIR)/mapping.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 
@@ -51,7 +54,7 @@ $(NAME): progress_bar_project $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
-	@echo "$(CYAN)Compiled files: $<$(RESET)\n"
+	@echo "$(CYAN)Compiled files: $<$(RESET)"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

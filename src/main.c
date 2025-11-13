@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/12 18:10:11 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:18:57 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Cette fonction free une stack et la mets a null.
  **/
-static void	free_stack(t_stack *a, t_stack *b)
+static void	free_stack(t_stack *a, t_stack *b, t_stack *map)
 {
 	if (a)
 	{
@@ -30,6 +30,13 @@ static void	free_stack(t_stack *a, t_stack *b)
 		b->tab = NULL;
 		free(b);
 		b = NULL;
+	}
+	if (map)
+	{
+		free(map->tab);
+		map->tab = NULL;
+		free(map);
+		map = NULL;
 	}
 }
 
@@ -59,6 +66,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_stack	*map;
 	int		i;
 
 	if (ac <= 1)
@@ -67,29 +75,46 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	a = init_stack(ac, ac - 1);
+	map = init_stack(ac, ac - 1);
 	b = init_stack(ac, 0);
-	if (!a || !b)
+	if (!a || !b || !map)
 	{
-		free_stack(a, b);
+		free_stack(a, b, map);
 		return (0);
 	}
 	i = 0;
+	ft_printf("a->tab = ");
 	while (i < ac - 1)
 	{
 		a->tab[i] = ft_atoi(av[i + 1]);
-		ft_printf("a->tab[%d] = %d\n", i, a->tab[i]);
-		ft_printf("b->tab[%d] = %d\n", i, b->tab[i]);
+		ft_printf("%d,", a->tab[i]);
 		i++;
 	}
-	pb(a, b);
-	pa(a, b);
+
+
+	/* TEST */
+
+	mapping(a, map);	
+
+	/* PRINT A et B */
+
 	i = 0;
+	ft_printf("\na->tab = ");
 	while (i < (int)a->size)
 	{
 		ft_printf("%d", a->tab[i]);
 		i++;
 	}
 	ft_printf("\nTaille de a = %d\n", a->size);
+
+	ft_printf("map->tab = ");
+	i = 0;
+	while (i < (int)map->size)
+	{
+		ft_printf("%d,", map->tab[i]);
+		i++;
+	}
+
 	i = 0;
 	while (i < (int)b->size)
 	{
@@ -97,6 +122,6 @@ int	main(int ac, char **av)
 		i++;
 	}
 	ft_printf("\nTaille de b = %d\n", b->size);
-	free_stack(a, b);
+	free_stack(a, b, map);
 	return (0);
 }
