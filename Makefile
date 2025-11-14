@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/13 16:04:22 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/14 16:26:24 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -38,7 +38,8 @@ SRC			= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/swap_push_utils.c \
 			  $(SRC_DIR)/rotate_utils.c \
 			  $(SRC_DIR)/reverse_rotate_utils.c \
-			  $(SRC_DIR)/mapping.c
+			  $(SRC_DIR)/mapping.c \
+			  $(SRC_DIR)/tri.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 

@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/13 17:18:57 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/14 18:21:02 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static t_stack	*init_stack(int ac, size_t size)
 		return (NULL);
 	}
 	new->size = size;
-	ft_printf("%d\n", new->size);
 	return (new);
 }
 
@@ -68,6 +67,7 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	t_stack	*map;
 	int		i;
+	int		count;
 
 	if (ac <= 1)
 	{
@@ -83,7 +83,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	i = 0;
-	ft_printf("a->tab = ");
+	ft_printf("\n\n\na->tab = \n");
 	while (i < ac - 1)
 	{
 		a->tab[i] = ft_atoi(av[i + 1]);
@@ -94,34 +94,30 @@ int	main(int ac, char **av)
 
 	/* TEST */
 
-	mapping(a, map);	
+	mapping(a, map);
+	count = algo(map, b);
 
 	/* PRINT A et B */
 
-	i = 0;
-	ft_printf("\na->tab = ");
-	while (i < (int)a->size)
-	{
-		ft_printf("%d", a->tab[i]);
-		i++;
-	}
-	ft_printf("\nTaille de a = %d\n", a->size);
-
-	ft_printf("map->tab = ");
+	ft_printf("\n\nmap->tab = \n");
 	i = 0;
 	while (i < (int)map->size)
 	{
 		ft_printf("%d,", map->tab[i]);
 		i++;
 	}
-
+	ft_printf("\n\nb->tab = \n");
 	i = 0;
 	while (i < (int)b->size)
 	{
-		ft_printf("%d", b->tab[i]);
+		ft_printf("%d,", b->tab[i]);
 		i++;
 	}
-	ft_printf("\nTaille de b = %d\n", b->size);
+	ft_printf("\n\n Nombre de couts = %d\n", count);
 	free_stack(a, b, map);
 	return (0);
 }
+
+/**
+* Penser a controller ce qui ce passe si size 1 dans bit_max
+*/
