@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/14 18:19:48 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:08:27 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,9 @@ void	rrr(t_stack *a, t_stack *b);
 
 void	mapping(t_stack *a, t_stack *map);
 int		algo(t_stack *map, t_stack *b);
+
+/* -------------------------------- TEST ---------------------------------- */
+
+void	print_stack(t_stack *a, t_stack *b, int bit);
 
 #endif // !DEBUG

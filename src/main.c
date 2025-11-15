@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/14 18:21:02 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/15 14:53:00 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,36 +83,15 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	i = 0;
-	ft_printf("\n\n\na->tab = \n");
 	while (i < ac - 1)
 	{
 		a->tab[i] = ft_atoi(av[i + 1]);
-		ft_printf("%d,", a->tab[i]);
 		i++;
 	}
-
-
 	/* TEST */
-
 	mapping(a, map);
 	count = algo(map, b);
 
-	/* PRINT A et B */
-
-	ft_printf("\n\nmap->tab = \n");
-	i = 0;
-	while (i < (int)map->size)
-	{
-		ft_printf("%d,", map->tab[i]);
-		i++;
-	}
-	ft_printf("\n\nb->tab = \n");
-	i = 0;
-	while (i < (int)b->size)
-	{
-		ft_printf("%d,", b->tab[i]);
-		i++;
-	}
 	ft_printf("\n\n Nombre de couts = %d\n", count);
 	free_stack(a, b, map);
 	return (0);

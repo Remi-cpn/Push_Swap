@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/14 16:26:24 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/15 14:50:19 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -39,7 +39,8 @@ SRC			= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/rotate_utils.c \
 			  $(SRC_DIR)/reverse_rotate_utils.c \
 			  $(SRC_DIR)/mapping.c \
-			  $(SRC_DIR)/tri.c
+			  $(SRC_DIR)/tri.c \
+			  $(SRC_DIR)/print.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 
@@ -67,7 +68,7 @@ $(LIBFT_A):progress_bar_libft
 clean:
 	@make clean -s -C $(LIBFT_DIR)
 	@$(RM) -r $(OBJ_DIR)
-	@echo "$(CYAN)Object files removed$(RESET)"
+	@echo "$(CYAN)2K\rObject files removed$(RESET)"
 
 fclean: clean
 	@make fclean -s -C $(LIBFT_DIR)

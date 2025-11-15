@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/14 18:48:42 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:44:21 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,31 @@ static int	bit_max(size_t index_max)
 	nbr_bit++;
 	return (nbr_bit);
 }
+/*
+char	*algo_rec(t_stack *map, t_stack *b, int bit)
+{
+	const int	nbr_bit = bit_max(map->size - 1);
+	static int count = 0;
+	static char *str = NULL;
 
+	if (bit == nbr_bit)
+	{
+		str = ft_calloc(count, sizeof(char));
+		if (!str)
+			return (NULL);
+		return (str);
+	}
+	
+}
+
+void	call()
+{
+
+}
+*/
 int	algo(t_stack *map, t_stack *b)
 {
 	const int	nbr_bit = bit_max(map->size - 1);
-	size_t		i;
 	int			bit;
 	size_t		size;
 	int			count;
@@ -35,22 +55,23 @@ int	algo(t_stack *map, t_stack *b)
 	count = 0;
 	while (bit < nbr_bit)
 	{
-		i = 0;
 		size = map->size;
-		while (i < size)
+		while (size > 0)
 		{
 			if (((map->tab[0] >> bit) & 1) == 0)
 				pb(map, b);
 			else
 				ra(map);
-			i++;
+			size--;
 			count++;
 		}
+		print_stack(map, b, bit);
 		while (b->size > 0)
 		{
 			pa(map, b);
 			count++;
 		}
+		print_stack(map, b, -1);
 		bit++;
 	}
 	return (count);
