@@ -6,44 +6,66 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/15 17:44:21 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 21:49:03 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static int	bit_max(size_t index_max)
+static char	*opti(char *sec)
 {
-	static int	nbr_bit = 0;
-
-	if (index_max == 0)
-		return (0);
-	bit_max(index_max / 2);
-	nbr_bit++;
-	return (nbr_bit);
+	sec = replace(sec, "pb", "pa");
+	sec = replace(sec, "pa", "pb");
+	return (sec);
 }
-/*
-char	*algo_rec(t_stack *map, t_stack *b, int bit)
-{
-	const int	nbr_bit = bit_max(map->size - 1);
-	static int count = 0;
-	static char *str = NULL;
 
-	if (bit == nbr_bit)
+char	*algo_part2(t_stack *map, t_stack *b, t_bit *bit, char *sec)
+{
+	while (b->size > 0)
 	{
-		str = ft_calloc(count, sizeof(char));
-		if (!str)
-			return (NULL);
-		return (str);
+		sec = strjoin_wish(sec, pa(map, b));
 	}
-	
+	print_stack(map, b, -1);
+	bit->index = bit->index + 1;
+	if (bit->index < bit->max)
+		sec = algo_part1(map, b, bit, sec);
+	else
+		free(bit);
+	return (sec);
 }
 
-void	call()
+char	*algo_part1(t_stack *map, t_stack *b, t_bit *bit, char *sec)
 {
+	size_t	size;
 
+	size = map->size;
+	while (size > 0)
+	{
+		if (((map->tab[0] >> bit->index) & 1) == 0)
+			sec = strjoin_wish(sec, pb(map, b));
+		else
+			sec = strjoin_wish(sec, ra(map));
+		size--;
+	}
+	print_stack(map, b, bit->index);
+	sec = algo_part2(map, b, bit, sec);
+	return (sec);
 }
-*/
+
+char	*algo(t_stack *map, t_stack *b)
+{
+	t_bit	*bit;
+	char	*sec;
+
+	bit = init_bit(bit_max(map->size - 1), 0);
+	sec = ft_calloc(1, sizeof(char));
+	sec = algo_part1(map, b, bit, sec);
+	ft_printf("\n%s", sec);
+	sec = opti(sec);
+	ft_printf("\n%s", sec);
+	return (sec);
+}
+/**
 int	algo(t_stack *map, t_stack *b)
 {
 	const int	nbr_bit = bit_max(map->size - 1);
@@ -75,4 +97,4 @@ int	algo(t_stack *map, t_stack *b)
 		bit++;
 	}
 	return (count);
-}
+}*/

@@ -6,13 +6,13 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:04:51 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/17 15:05:42 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:20:25 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	free_str_str(char **str)
+void	free_tab_str(char **str)
 {
 	int	i;
 
@@ -73,5 +73,20 @@ t_stack	*init_stack(int ac, size_t size)
 		return (NULL);
 	}
 	new->size = size;
+	return (new);
+}
+
+/**
+ * Cette fonction initialise une structure.
+ */
+t_bit	*init_bit(int bit_max, int index)
+{
+	struct s_bit	*new;
+
+	new = malloc(sizeof(struct s_bit));
+	if (!new)
+		return (NULL);
+	new->max = bit_max;
+	new->index = index;
 	return (new);
 }

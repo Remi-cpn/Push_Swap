@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@student.42angouleme.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/14 17:34:44 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/07 18:28:48 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/18 20:32:41 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC = 		ft_atoi.c \
 			ft_substr.c \
 			ft_tolower.c \
 			ft_toupper.c \
+			ft_count_word.c \
 
 SRC_PUT =	ft_putchar_fd.c \
 			ft_putendl_fd.c \

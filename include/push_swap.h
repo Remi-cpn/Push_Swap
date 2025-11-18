@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/17 15:06:03 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 21:48:39 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ int		main(int ac, char **av);
 typedef struct s_stack
 {
 	int		*tab;
-	int		*mapping;
 	size_t	size;
 }	t_stack;
+
+typedef struct s_bit
+{
+	int	max;
+	int	index;
+}	t_bit;
 
 /* --------------------------------- RULES --------------------------------- */
 
@@ -34,11 +39,11 @@ typedef struct s_stack
 void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
+char	*pa(t_stack *a, t_stack *b);
+char	*pb(t_stack *a, t_stack *b);
 
 /* rotate_utils */
-void	ra(t_stack *a);
+char	*ra(t_stack *a);
 void	rb(t_stack *b);
 void	rr(t_stack *a, t_stack *b);
 
@@ -53,14 +58,23 @@ t_stack	*parsing(int ac, char **av);
 
 /* ------------------------------ FONCTIONS -------------------------------- */
 
+char	*algo(t_stack *map, t_stack *b);
+char	*algo_part1(t_stack *map, t_stack *b, t_bit *bit, char *sec);
+char	*algo_part2(t_stack *map, t_stack *b, t_bit *bit, char *sec);
+
+/* -------------------------------- UTILS ---------------------------------- */
+
 void	mapping(t_stack *a, t_stack *map);
-int		algo(t_stack *map, t_stack *b);
+char	*strjoin_wish(char *s1, char *s2);
+int		bit_max(size_t index_max);
+char	*replace(char *sec, char *bad1, char *bad2);
 
 /* ------------------------------- MEMORY ---------------------------------- */
 
 t_stack	*init_stack(int ac, size_t size);
+t_bit	*init_bit(int bit_max, int bit);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
-void	free_str_str(char **str);
+void	free_tab_str(char **str);
 
 /* -------------------------------- TEST ---------------------------------- */
 

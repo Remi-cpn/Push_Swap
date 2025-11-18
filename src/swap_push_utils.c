@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:29:31 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/13 13:44:07 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 20:21:23 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ss(t_stack *a, t_stack *b)
 /**
  * Push the first elements at the top of stack b on the top of stack a.
  */
-void	pa(t_stack *a, t_stack *b)
+char	*pa(t_stack *a, t_stack *b)
 {
 	size_t	i;
 	int		tmp;
@@ -92,12 +92,13 @@ void	pa(t_stack *a, t_stack *b)
 			i++;
 		}
 	}
+	return ("pa ");
 }
 
 /**
  * Push the first elements at the top of stack a on the top of stack b.
  */
-void	pb(t_stack *a, t_stack *b)
+char	*pb(t_stack *a, t_stack *b)
 {
 	size_t	i;
 	int		tmp;
@@ -122,4 +123,5 @@ void	pb(t_stack *a, t_stack *b)
 			i++;
 		}
 	}
+	return ("pb ");
 }

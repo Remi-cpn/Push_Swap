@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:51:16 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/07 13:33:37 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 20:33:18 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_isprint(int c);
 char	*ft_itoa(int n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+size_t	ft_count_word(char const *s, char c);
 
 /* ---------------------------- FONCTIONS STR ------------------------------ */
 

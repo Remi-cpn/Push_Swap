@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapping.c                                          :+:      :+:    :+:   */
+/*   ft_count_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 15:26:36 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/13 16:21:05 by rcompain         ###   ########.fr       */
+/*   Created: 2025/11/18 20:31:09 by rcompain          #+#    #+#             */
+/*   Updated: 2025/11/18 20:33:12 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-// prevoir malloc de a->mapping
-
-void	mapping(t_stack *a, t_stack *map)
+size_t	ft_count_word(char const *s, char c)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	count;
 
-	if (a->size == 0)
-		return ;
 	i = 0;
-	map->tab[0] = 0;
-	while (i < (int)a->size - 1)
+	count = 0;
+	while (s[i])
 	{
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+			count++;
 		i++;
-		map->tab[i] = 0;
-		j = 0;
-		while (j < i)
-		{
-			if (a->tab[i] > a->tab[j])
-				map->tab[i]++;
-			else
-				map->tab[j]++;
-			j++;
-		}
 	}
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/17 15:31:47 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/18 17:56:56 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <stdlib.h>
 #include <limits.h>
 
+/**
+ * Cette fonction initialise la Stack a.
+ */
 static int	init_a(t_stack *a, char **str)
 {
 	int	i;
@@ -26,10 +29,13 @@ static int	init_a(t_stack *a, char **str)
 		a->tab[i] = atoi(str[i]);
 		i++;
 	}
-	free_str_str(str);
+	free_tab_str(str);
 	return (0);
 }
 
+/**
+ * Cette fonction count le nombre d'int present dans str.
+ */
 static int	parcing_count(char *str)
 {
 	int	i;
@@ -75,6 +81,9 @@ static char	*parcing_join(int ac, char **av)
 	return (str);
 }
 
+/**
+ * Cette fonction renvoi 'Erreur' sur les arguments ne sont pas valides.
+ */
 static int	parcing_check(int ac, char **av)
 {
 	int		i;
@@ -107,26 +116,24 @@ t_stack	*parsing(int ac, char **av)
 {
 	const int	check = parcing_check(ac - 1, av);
 	char		*str;
-	char		**str2;
+	char		**tab_str;
 	t_stack		*a;
 	int			count;
 
 	if (check == -1)
 		return (NULL);
 	str = parcing_join(ac - 1, av);
-	ft_printf("%s\n", str);
 	count = parcing_count(str);
-	ft_printf("%d\n", count);
-	str2 = ft_split(str, ' ');
+	tab_str = ft_split(str, ' ');
 	free(str);
 	str = NULL;
 	a = init_stack(count, count);
 	if (!a)
 	{
-		free_str_str(str2);
+		free_tab_str(tab_str);
 		return (NULL);
 	}
-	if (init_a(a, str2) == -1)
+	if (init_a(a, tab_str) == -1)
 		return (NULL);
 	return (a);
 }
