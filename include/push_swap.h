@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 21:48:39 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/28 13:56:20 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ char	*pb(t_stack *a, t_stack *b);
 
 /* rotate_utils */
 char	*ra(t_stack *a);
-void	rb(t_stack *b);
+char	*rb(t_stack *b);
 void	rr(t_stack *a, t_stack *b);
 
 /* reverse_rotate_utils */
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
+char	*rra(t_stack *a);
+char	*rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
 /* ------------------------------- PARSING --------------------------------- */
 
 t_stack	*parsing(int ac, char **av);
 
-/* ------------------------------ FONCTIONS -------------------------------- */
+/* -------------------------------- ALGO ----------------------------------- */
 
-char	*algo(t_stack *map, t_stack *b);
-char	*algo_part1(t_stack *map, t_stack *b, t_bit *bit, char *sec);
-char	*algo_part2(t_stack *map, t_stack *b, t_bit *bit, char *sec);
+t_list	*algo(t_stack *map, t_stack *b);
+int		pos_in_a(t_stack *map, int value);
+int		*check_best_index(t_stack *map, t_stack *b);
 
 /* -------------------------------- UTILS ---------------------------------- */
 
@@ -76,8 +76,12 @@ t_bit	*init_bit(int bit_max, int bit);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
 void	free_tab_str(char **str);
 
+/* ---------------------------- OPTIMISATION ------------------------------ */
+
+void	opti(t_list **lst);
+
 /* -------------------------------- TEST ---------------------------------- */
 
-void	print_stack(t_stack *a, t_stack *b, int bit);
+void	print_stack(t_stack *a, t_stack *b);
 
 #endif // !DEBUG

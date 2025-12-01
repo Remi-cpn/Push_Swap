@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:27:02 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 20:22:05 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/28 17:37:36 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ra(t_stack *a)
  * Shift up all elements of stack b by 1. The first element becomes the 
  * last one.
  */
-void	rb(t_stack *b)
+char	*rb(t_stack *b)
 {
 	int		tmp;
 	size_t	i;
@@ -49,6 +49,7 @@ void	rb(t_stack *b)
 		i++;
 	}
 	b->tab[i] = tmp;
+	return ("rb ");
 }
 
 /**
@@ -56,6 +57,7 @@ void	rb(t_stack *b)
  */
 void	rr(t_stack *a, t_stack *b)
 {
+	/*
 	int		tmp;
 	size_t	i;
 
@@ -75,4 +77,7 @@ void	rr(t_stack *a, t_stack *b)
 		i++;
 	}
 	b->tab[i] = tmp;
+	*/
+	ra(a);
+	rb(b);
 }

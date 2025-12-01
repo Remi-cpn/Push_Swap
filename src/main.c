@@ -6,31 +6,57 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 20:55:01 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:05:56 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	exec(t_stack *a, t_stack *b, char *sec)
+void	exec(t_stack *a, t_stack *b, t_list *lst)
+{
+	t_list	*tmp;
+	char	*cmd;
+
+	tmp = lst;
+	while (tmp)
+	{
+		cmd = (char *)tmp->content;
+		if (ft_strncmp(cmd, "pa", 2) == 0)
+			pa(a, b);
+		else if (ft_strncmp(cmd, "pb", 2) == 0)
+			pb(a, b);
+		else if (ft_strncmp(cmd, "ra", 2) == 0)
+			ra(a);
+		else if (ft_strncmp(cmd, "rb", 2) == 0)
+			rb(b);
+		else if (ft_strncmp(cmd, "rra", 3) == 0)
+			rra(a);
+		else if (ft_strncmp(cmd, "rrb", 3) == 0)
+			rrb(b);
+		else if (ft_strncmp(cmd, "rrr", 3) == 0)
+			rrr(a, b);
+		else if (ft_strncmp(cmd, "rr", 2) == 0)
+			rr(a, b);
+		tmp = tmp->next;
+	}
+	print_stack(a, b);
+}
+
+static void	tri_ok(t_stack *a)
 {
 	int	i;
 
 	i = 0;
-	while (sec[i])
+	while (i < (int)a->size - 1)
 	{
-		if (sec[i] == 'p')
+		if (a->tab[i] > a->tab[i + 1])
 		{
-			if (sec[i + 1] == 'a')
-				pa(a, b);
-			else
-				pb(a, b);
+			ft_printf("Tri KO a l'index %d\n", i);
+			return ;
 		}
-		if (sec[i] == 'r')
-			ra(a);
 		i++;
 	}
-	print_stack(a, b, 0);
+	ft_printf("Tri OK");
 }
 
 int	main(int ac, char **av)
@@ -39,7 +65,7 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	t_stack	*map;
 	int		count;
-	char	*sec;
+	t_list	*lst;
 
 	if (ac <= 1)
 	{
@@ -58,12 +84,31 @@ int	main(int ac, char **av)
 	}
 	/* TEST */
 	mapping(a, map);
-	sec = algo(map, b);
-	count = ft_count_word(sec, ' ');
-	exec(a, b, sec);
+	lst = algo(map, b);
+
+	t_list	*tmp = lst;
+
+	ft_printf("\nList =\n");
+	while (tmp)
+	{
+		ft_printf("%s", tmp->content);
+		tmp = tmp->next;
+	}
+	opti(&lst);
+	tmp = lst;
+	ft_printf("\nList Opti=\n");
+	count = 0;
+	while (tmp)
+	{
+		ft_printf("%s", tmp->content);
+		tmp = tmp->next;
+		count++;
+	}
+	exec(a, b, lst);
 	ft_printf("\n\n Nombre de couts = %d\n", count);
+	tri_ok(a);
 	free_stack(a, b, map);
-	free(sec);
+	ft_lstclear(&lst, free);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:26:36 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 21:53:49 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/25 18:20:14 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,6 @@ char	*replace(char *sec, char *bad1, char *bad2)
 		i++;
 	}
 	return (sec);
-}
-
-int	bit_max(size_t index_max)
-{
-	static int	nbr_bit = 0;
-
-	if (index_max == 0)
-		return (0);
-	bit_max(index_max / 2);
-	nbr_bit++;
-	return (nbr_bit);
 }
 
 char	*strjoin_wish(char *s1, char *s2)

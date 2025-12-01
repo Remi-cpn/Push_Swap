@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:58:43 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/13 14:08:47 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:43:11 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * Shift down all elements of stack a by 1. The last element becomes the 
  * first one.
  */
-void	rra(t_stack *a)
+char	*rra(t_stack *a)
 {
 	int		tmp;
 	size_t	i;
@@ -31,14 +31,16 @@ void	rra(t_stack *a)
 			i--;
 		}
 		a->tab[0] = tmp;
+		return ("rra ");
 	}
+	return (NULL);
 }
 
 /**
  * Shift down all elements of stack b by 1. The last element becomes the 
  * first one.
  */
-void	rrb(t_stack *b)
+char	*rrb(t_stack *b)
 {
 	int		tmp;
 	size_t	i;
@@ -53,7 +55,9 @@ void	rrb(t_stack *b)
 			i--;
 		}
 		b->tab[0] = tmp;
+		return ("rrb ");
 	}
+	return (NULL);
 }
 
 /**
@@ -61,6 +65,7 @@ void	rrb(t_stack *b)
  */
 void	rrr(t_stack *a, t_stack *b)
 {
+	/*
 	int		tmp;
 	size_t	i;
 
@@ -85,5 +90,7 @@ void	rrr(t_stack *a, t_stack *b)
 			i--;
 		}
 		b->tab[0] = tmp;
-	}
+	}*/
+	rra(a);
+	rrb(b);
 }

@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/18 20:14:56 by rcompain         ###   ########.fr        #
+#    Updated: 2025/11/28 14:01:35 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -16,7 +16,7 @@
 
 NAME		= push_swap
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 AR			= ar rcs
 
@@ -40,9 +40,11 @@ SRC			= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/reverse_rotate_utils.c \
 			  $(SRC_DIR)/utils.c \
 			  $(SRC_DIR)/tri.c \
+			  $(SRC_DIR)/tri_utils.c \
 			  $(SRC_DIR)/print.c \
 			  $(SRC_DIR)/parsing.c \
-			  $(SRC_DIR)/memory.c
+			  $(SRC_DIR)/memory.c \
+			  $(SRC_DIR)/opti_lst.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 
