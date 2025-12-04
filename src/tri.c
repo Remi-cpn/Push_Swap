@@ -6,13 +6,13 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/28 19:09:28 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:48:33 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	algo_part3(t_stack *map, t_list **lst)
+static void	rotate_min_to_top(t_stack *map, t_list **lst)
 {
 	if (map->size <= 1)
 		return ;
@@ -28,12 +28,14 @@ static void	algo_part3(t_stack *map, t_list **lst)
 	}
 }
 
-static void	algo_part2(t_stack *map, t_stack *b, t_list **lst)
+static void	push_best_to_a(t_stack *map, t_stack *b, t_list **lst)
 {
 	int			move;
 	const int	*cost_best = check_best_index(map, b);
 	const int	value = b->tab[cost_best[0]];
 
+	if (!cost_best)
+		return ;
 	move = cost_best[2];
 	while ((cost_best[1] == 1 || cost_best[1] == 4) && b->tab[0] != value)
 	{
@@ -52,7 +54,7 @@ static void	algo_part2(t_stack *map, t_stack *b, t_list **lst)
 	free((int *)cost_best);
 }
 
-static void	algo_part1(t_stack *map, t_stack *b, t_list **lst, int n)
+static void	push_with_chunk_to_b(t_stack *map, t_stack *b, t_list **lst, int n)
 {
 	static int	chunk = -1;
 	size_t		size;
@@ -69,26 +71,37 @@ static void	algo_part1(t_stack *map, t_stack *b, t_list **lst, int n)
 			ft_lstadd_back(lst, ft_lstnew(ft_strdup(ra(map))));
 		size--;
 	}
-	algo_part1(map, b, lst, n);
+	push_with_chunk_to_b(map, b, lst, n);
 }
 
+/**
+ * Cet algo tri la stack a (ici map) par ordre croissant en utilisant la stack
+ * b. Une premiere phase en pushant les element de a dans b par un systeme 
+ * default chunks. Puis il va push les elements de b vers a en un minimum de 
+ * couts. Pour finir il va faire tourner les elements de a pour mettre le min 
+ * en haut.
+ */
 t_list	*algo(t_stack *map, t_stack *b)
 {
 	t_list		*lst;
-	const int	n = 170;
+	int			n;
 
+	if (map->size < 4)
+		n = 4;
+	else
+		n = map->size / 4;
 	lst = NULL;
 	print_stack(map, b);
-	algo_part1(map, b, &lst, n);
+	push_with_chunk_to_b(map, b, &lst, n);
 	ft_printf("\n Fin algo_part1");
 	print_stack(map, b);
 	while (b->size > 0)
 	{
-		algo_part2(map, b, &lst);
+		push_best_to_a(map, b, &lst);
 		ft_lstadd_back(&lst, ft_lstnew(ft_strdup(pa(map, b))));
 		print_stack(map, b);
 	}
-	algo_part3(map, &lst);
+	rotate_min_to_top(map, &lst);
 	print_stack(map, b);
 	return (lst);
 }

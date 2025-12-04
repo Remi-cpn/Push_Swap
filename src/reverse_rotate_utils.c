@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:58:43 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/28 18:43:11 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:30:47 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,6 @@ char	*rrb(t_stack *b)
  */
 void	rrr(t_stack *a, t_stack *b)
 {
-	/*
-	int		tmp;
-	size_t	i;
-
-	if (a->size != 0)
-	{
-		i = a->size - 1;
-		tmp = a->tab[i];
-		while (i > 0)
-		{
-			a->tab[i] = a->tab[i - 1];
-			i--;
-		}
-		a->tab[0] = tmp;
-	}
-	if (b->size != 0)
-	{
-		i = b->size - 1;
-		tmp = b->tab[i];
-		while (i > 0)
-		{
-			b->tab[i] = b->tab[i - 1];
-			i--;
-		}
-		b->tab[0] = tmp;
-	}*/
 	rra(a);
 	rrb(b);
 }

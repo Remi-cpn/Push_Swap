@@ -6,13 +6,16 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:04:51 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 19:20:25 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:29:46 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	free_tab_str(char **str)
+/**
+ * This fonction free a char ** and set this variable to NULL.
+ **/
+void	free_str(char **str)
 {
 	int	i;
 
@@ -28,7 +31,8 @@ void	free_tab_str(char **str)
 }
 
 /**
- * Cette fonction free une stack et la mets a null.
+ * This fonction free a stack and put this to null. You can put "NULL" on 
+ * parametre to select the stack to free.
  **/
 void	free_stack(t_stack *a, t_stack *b, t_stack *map)
 {
@@ -56,7 +60,7 @@ void	free_stack(t_stack *a, t_stack *b, t_stack *map)
 }
 
 /**
- * Cette fonction initialise une stack.
+ * This fonction malloc/calloc and initialize one stack.
  */
 t_stack	*init_stack(int ac, size_t size)
 {
@@ -73,20 +77,5 @@ t_stack	*init_stack(int ac, size_t size)
 		return (NULL);
 	}
 	new->size = size;
-	return (new);
-}
-
-/**
- * Cette fonction initialise une structure.
- */
-t_bit	*init_bit(int bit_max, int index)
-{
-	struct s_bit	*new;
-
-	new = malloc(sizeof(struct s_bit));
-	if (!new)
-		return (NULL);
-	new->max = bit_max;
-	new->index = index;
 	return (new);
 }

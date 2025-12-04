@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/18 17:56:56 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:40:31 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Cette fonction initialise la Stack a.
  */
-static int	init_a(t_stack *a, char **str)
+static int	build_a(t_stack *a, char **str)
 {
 	int	i;
 
@@ -25,11 +25,14 @@ static int	init_a(t_stack *a, char **str)
 	while (str[i])
 	{
 		if (atoi(str[i]) > INT_MAX || ft_atoi(str[i]) < INT_MIN)
+		{
+			write(2, "Error", 5);
 			return (-1);
+		}
 		a->tab[i] = atoi(str[i]);
 		i++;
 	}
-	free_tab_str(str);
+	free_str(str);
 	return (0);
 }
 
@@ -112,6 +115,9 @@ static int	parcing_check(int ac, char **av)
 	return (count);
 }
 
+/**
+ * This Fonction 
+ */
 t_stack	*parsing(int ac, char **av)
 {
 	const int	check = parcing_check(ac - 1, av);
@@ -130,10 +136,10 @@ t_stack	*parsing(int ac, char **av)
 	a = init_stack(count, count);
 	if (!a)
 	{
-		free_tab_str(tab_str);
+		free_str(tab_str);
 		return (NULL);
 	}
-	if (init_a(a, tab_str) == -1)
+	if (build_a(a, tab_str) == -1)
 		return (NULL);
 	return (a);
 }

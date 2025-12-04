@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 14:48:41 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/27 19:17:08 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:02:13 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,14 @@ int	*check_best_index(t_stack *map, t_stack *b)
 
 	ft_printf("\nRecherche du best Index de b  pour a:");
 	best_index = ft_calloc(4, sizeof(int));
+	if (!best_index)
+		return (NULL);
 	i = 0;
 	while (i < (int)b->size)
 	{
 		curent_index = best_move(map, b, i);
+		if (!curent_index)
+			return (NULL);
 		if (i == 0 || curent_index[1] < best_index[2])
 		{
 			best_index[0] = i;
