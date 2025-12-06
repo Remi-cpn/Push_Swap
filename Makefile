@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/28 14:01:35 by rcompain         ###   ########.fr        #
+#    Updated: 2025/12/06 13:58:34 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -39,8 +39,8 @@ SRC			= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/rotate_utils.c \
 			  $(SRC_DIR)/reverse_rotate_utils.c \
 			  $(SRC_DIR)/utils.c \
-			  $(SRC_DIR)/tri.c \
-			  $(SRC_DIR)/tri_utils.c \
+			  $(SRC_DIR)/sort.c \
+			  $(SRC_DIR)/sort_best_index.c \
 			  $(SRC_DIR)/print.c \
 			  $(SRC_DIR)/parsing.c \
 			  $(SRC_DIR)/memory.c \

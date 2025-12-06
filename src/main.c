@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/28 19:05:56 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/06 15:37:11 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	exec(t_stack *a, t_stack *b, t_list *lst)
 		else if (ft_strncmp(cmd, "pb", 2) == 0)
 			pb(a, b);
 		else if (ft_strncmp(cmd, "ra", 2) == 0)
-			ra(a);
+			ra(a, b);
 		else if (ft_strncmp(cmd, "rb", 2) == 0)
-			rb(b);
+			rb(b, a);
 		else if (ft_strncmp(cmd, "rra", 3) == 0)
-			rra(a);
+			rra(a, b);
 		else if (ft_strncmp(cmd, "rrb", 3) == 0)
-			rrb(b);
+			rrb(b, a);
 		else if (ft_strncmp(cmd, "rrr", 3) == 0)
 			rrr(a, b);
 		else if (ft_strncmp(cmd, "rr", 2) == 0)
@@ -84,7 +84,9 @@ int	main(int ac, char **av)
 	}
 	/* TEST */
 	mapping(a, map);
-	lst = algo(map, b);
+	lst = algo_sort(map, b, 0);
+	if (!lst)
+		return (0);
 
 	t_list	*tmp = lst;
 
@@ -111,7 +113,3 @@ int	main(int ac, char **av)
 	ft_lstclear(&lst, free);
 	return (0);
 }
-
-/**
-* Penser a controller ce qui ce passe si size 1 dans bit_max
-*/

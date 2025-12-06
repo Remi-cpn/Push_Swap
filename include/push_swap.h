@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/04 17:43:37 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/06 15:46:47 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,29 @@ typedef struct s_stack
 	size_t	size;
 }	t_stack;
 
+typedef struct s_index
+{
+	int	*curent;
+	int	*best;
+}	t_index;
+
+typedef struct s_cost
+{
+	int	ra_rb;
+	int	rra_rrb;
+	int	ra_rrb;
+	int	rra_rb;
+	int	*best;
+}	t_cost;
+
+typedef enum e_move_type
+{
+	RA_RB = 1,
+	RRA_RRB,
+	RA_RRB,
+	RRA_RB
+}	t_move_type;
+
 /* --------------------------------- RULES --------------------------------- */
 
 /* swap_push_utils */
@@ -37,13 +60,13 @@ char	*pa(t_stack *a, t_stack *b);
 char	*pb(t_stack *a, t_stack *b);
 
 /* rotate_utils */
-char	*ra(t_stack *a);
-char	*rb(t_stack *b);
+char	*ra(t_stack *a, t_stack *b);
+char	*rb(t_stack *b, t_stack *a);
 void	rr(t_stack *a, t_stack *b);
 
 /* reverse_rotate_utils */
-char	*rra(t_stack *a);
-char	*rrb(t_stack *b);
+char	*rra(t_stack *a, t_stack *b);
+char	*rrb(t_stack *b, t_stack *a);
 void	rrr(t_stack *a, t_stack *b);
 
 /* ------------------------------- PARSING --------------------------------- */
@@ -52,8 +75,7 @@ t_stack	*parsing(int ac, char **av);
 
 /* -------------------------------- ALGO ----------------------------------- */
 
-t_list	*algo(t_stack *map, t_stack *b);
-int		pos_in_a(t_stack *map, int value);
+t_list	*algo_sort(t_stack *map, t_stack *b, int flag);
 int		*check_best_index(t_stack *map, t_stack *b);
 void	opti(t_list **lst);
 
