@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/06 15:46:05 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:52:05 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,30 @@ static int	rotate_min_to_top(t_stack *map, t_list **lst, int flag)
 
 static int	push_best_to_a(t_stack *map, t_stack *b, t_list **lst, int flag)
 {
-	int			move;
-	const int	*cost_best = check_best_index(map, b);
-	const int	value = b->tab[cost_best[0]];
+	int			mv;
+	const int	*best = check_best_index(map, b);
+	const int	value = b->tab[best[0]];
 
-	if (!cost_best || flag == -1)
+	if (!best || flag == -1)
 		return (-1);
-	move = cost_best[2];
-	while ((cost_best[1] == 1 || cost_best[1] == 4) && b->tab[0] != value
-		&& flag == 0)
+	mv = best[2];
+	while ((best[1] == RA_RB || best[1] == RRA_RB)
+		&& b->tab[0] != value && flag == 0)
 	{
 		flag = new_cmd(lst, b, NULL, rb);
-		move--;
+		mv--;
 	}
-	while ((cost_best[1] == 2 || cost_best[1] == 3) && b->tab[0] != value
-		&& flag == 0)
+	while ((best[1] == RRA_RRB || best[1] == RA_RRB)
+		&& b->tab[0] != value && flag == 0)
 	{
 		flag = new_cmd(lst, b, NULL, rrb);
-		move--;
+		mv--;
 	}
-	while ((cost_best[1] == 1 || cost_best[1] == 3) && move-- != 0 && flag == 0)
+	while ((best[1] == RA_RB || best[1] == RA_RRB) && mv-- != 0 && flag == 0)
 		flag = new_cmd(lst, map, NULL, ra);
-	while ((cost_best[1] == 2 || cost_best[1] == 4) && move-- != 0 && flag == 0)
+	while ((best[1] == RRA_RRB || best[1] == RRA_RB) && mv-- != 0 && flag == 0)
 		flag = new_cmd(lst, map, NULL, rra);
-	free((int *)cost_best);
+	free((int *)best);
 	return (flag);
 }
 
@@ -116,22 +116,18 @@ t_list	*algo_sort(t_stack *map, t_stack *b, int flag)
 	t_list		*lst;
 	int			n;
 
-	if (map->size < 4)
-		n = 4;
+	if (map->size < NBR_CHUNK)
+		n = NBR_CHUNK;
 	else
-		n = map->size / 4;
+		n = map->size / NBR_CHUNK;
 	lst = NULL;
-	print_stack(map, b);
 	flag = push_with_chunk_to_b(map, b, &lst, n);
-	print_stack(map, b);
 	while (b->size > 0 && flag == 0)
 	{
 		flag = push_best_to_a(map, b, &lst, flag);
 		flag = new_cmd(&lst, map, b, pa);
-		print_stack(map, b);
 	}
 	if (flag == -1 || rotate_min_to_top(map, &lst, flag) == -1)
 		return (NULL);
-	print_stack(map, b);
 	return (lst);
 }

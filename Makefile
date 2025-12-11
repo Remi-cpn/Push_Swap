@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/12/06 13:58:34 by rcompain         ###   ########.fr        #
+#    Updated: 2025/12/08 18:20:49 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -35,16 +35,17 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 # **************************************************************************** #
 
 SRC			= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/swap_push_utils.c \
-			  $(SRC_DIR)/rotate_utils.c \
-			  $(SRC_DIR)/reverse_rotate_utils.c \
+			  $(SRC_DIR)/move_push.c \
+			  $(SRC_DIR)/move_rotate.c \
+			  $(SRC_DIR)/move_reverse_rotate.c \
 			  $(SRC_DIR)/utils.c \
 			  $(SRC_DIR)/sort.c \
 			  $(SRC_DIR)/sort_best_index.c \
-			  $(SRC_DIR)/print.c \
 			  $(SRC_DIR)/parsing.c \
+			  $(SRC_DIR)/parsing_utils.c \
 			  $(SRC_DIR)/memory.c \
-			  $(SRC_DIR)/opti_lst.c
+			  $(SRC_DIR)/opti_lst.c \
+			  $(SRC_DIR)/opti_lst_utils.c
 
 OBJ			= ${SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o}
 

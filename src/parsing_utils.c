@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 14:38:25 by rcompain          #+#    #+#             */
-/*   Updated: 2025/11/25 16:46:30 by rcompain         ###   ########.fr       */
+/*   Created: 2025/12/08 18:14:45 by rcompain          #+#    #+#             */
+/*   Updated: 2025/12/08 19:52:49 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../include/push_swap.h"	
+#include <stddef.h>
 
-void	print_stack(t_stack *a, t_stack *b)
+int	empty_str(char *str)
 {
 	int	i;
 
-	ft_printf("\nStack A\t\tStack B \n");
 	i = 0;
-	while (i < (int)a->size || i < (int)b->size)
+	while (str[i])
 	{
-		if (i < (int)a->size)
-			ft_printf("%d\t\t", a->tab[i]);
-		else
-			ft_printf("\t\t");
-		if (i < (int)b->size)
-			ft_printf("%d\n", b->tab[i]);
-		else
-			ft_printf("\n");
+		if (ft_isdigit(str[i]))
+			return (FALSE);
 		i++;
 	}
+	return (TRUE);
+}
+
+int	already_exit(t_stack *a, int nbr)
+{
+	size_t	i;
+
+	i = 0;
+	if (a->tab[i] * 1 == 0 && nbr * 1 == 0)
+		return (TRUE);
+	while (i < a->size && (nbr * 1) != 0)
+	{
+		if ((a->tab[i] / nbr) == 1 && a->tab[i] % nbr == 0)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }

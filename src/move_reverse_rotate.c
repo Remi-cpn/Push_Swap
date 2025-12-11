@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate_utils.c                             :+:      :+:    :+:   */
+/*   move_reverse_rotate.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 13:58:43 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/06 15:33:50 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:49:49 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*rra(t_stack *a, t_stack *b)
 			i--;
 		}
 		a->tab[0] = tmp;
-		return ("rra ");
+		return ("rra\n");
 	}
 	return (NULL);
 }
@@ -57,7 +57,7 @@ char	*rrb(t_stack *b, t_stack *a)
 			i--;
 		}
 		b->tab[0] = tmp;
-		return ("rrb ");
+		return ("rrb\n");
 	}
 	return (NULL);
 }

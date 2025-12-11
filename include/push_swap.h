@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/06 15:46:47 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:56:00 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_cost
 	int	*best;
 }	t_cost;
 
+/* --------------------------------- ENUM --------------------------------- */
+
 typedef enum e_move_type
 {
 	RA_RB = 1,
@@ -50,21 +52,26 @@ typedef enum e_move_type
 	RRA_RB
 }	t_move_type;
 
+typedef enum e_utils
+{
+	ERROR = -1,
+	FALSE = 0,
+	TRUE = 1,
+	NBR_CHUNK = 4
+}	t_utils;
+
 /* --------------------------------- RULES --------------------------------- */
 
-/* swap_push_utils */
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
+/* move_push */
 char	*pa(t_stack *a, t_stack *b);
 char	*pb(t_stack *a, t_stack *b);
 
-/* rotate_utils */
+/* move_rotate */
 char	*ra(t_stack *a, t_stack *b);
 char	*rb(t_stack *b, t_stack *a);
 void	rr(t_stack *a, t_stack *b);
 
-/* reverse_rotate_utils */
+/* move_reverse_rotate */
 char	*rra(t_stack *a, t_stack *b);
 char	*rrb(t_stack *b, t_stack *a);
 void	rrr(t_stack *a, t_stack *b);
@@ -72,6 +79,8 @@ void	rrr(t_stack *a, t_stack *b);
 /* ------------------------------- PARSING --------------------------------- */
 
 t_stack	*parsing(int ac, char **av);
+int		empty_str(char *str);
+int		already_exit(t_stack *a, int nbr);
 
 /* -------------------------------- ALGO ----------------------------------- */
 
@@ -82,6 +91,8 @@ void	opti(t_list **lst);
 /* -------------------------------- UTILS ---------------------------------- */
 
 void	mapping(t_stack *a, t_stack *map);
+int		*count_rr_or_rrr(t_list *curent, char *str1, char *str2, int size);
+void	put_space(t_list *curent, int i);
 
 /* ------------------------------- MEMORY ---------------------------------- */
 
@@ -89,8 +100,4 @@ t_stack	*init_stack(int ac, size_t size);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
 void	free_str(char **str);
 
-/* -------------------------------- TEST ---------------------------------- */
-
-void	print_stack(t_stack *a, t_stack *b);
-
-#endif // !DEBUG
+#endif

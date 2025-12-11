@@ -6,12 +6,11 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/01 14:40:31 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:51:57 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"	
-#include <stdlib.h>
 #include <limits.h>
 
 /**
@@ -24,12 +23,17 @@ static int	build_a(t_stack *a, char **str)
 	i = 0;
 	while (str[i])
 	{
-		if (atoi(str[i]) > INT_MAX || ft_atoi(str[i]) < INT_MIN)
+		if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
 		{
-			write(2, "Error", 5);
-			return (-1);
+			write(2, "Error\n", 6);
+			return (ERROR);
 		}
-		a->tab[i] = atoi(str[i]);
+		if (a->size > 1 && already_exit(a, ft_atoi(str[i])) == TRUE)
+		{
+			write(2, "Error\n", 6);
+			return (ERROR);
+		}
+		a->tab[i] = ft_atoi(str[i]);
 		i++;
 	}
 	free_str(str);
@@ -85,7 +89,7 @@ static char	*parcing_join(int ac, char **av)
 }
 
 /**
- * Cette fonction renvoi 'Erreur' sur les arguments ne sont pas valides.
+ * Cette fonction renvoi 'Erreur' si les arguments ne sont pas valides.
  */
 static int	parcing_check(int ac, char **av)
 {
@@ -97,6 +101,11 @@ static int	parcing_check(int ac, char **av)
 	while (ac > 0)
 	{
 		i = -1;
+		if (empty_str(av[ac]) == TRUE)
+		{
+			write(2, "Error\n", 6);
+			return (ERROR);
+		}
 		while (av[ac][++i])
 		{
 			c = av[ac][i];
@@ -107,7 +116,7 @@ static int	parcing_check(int ac, char **av)
 				continue ;
 			if (c == ' ')
 				continue ;
-			write(1, "Error", 5);
+			write(2, "Error\n", 6);
 			return (-1);
 		}
 		ac--;
@@ -126,7 +135,7 @@ t_stack	*parsing(int ac, char **av)
 	t_stack		*a;
 	int			count;
 
-	if (check == -1)
+	if (check == ERROR)
 		return (NULL);
 	str = parcing_join(ac - 1, av);
 	count = parcing_count(str);

@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@student.42angouleme.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/14 17:34:44 by rcompain          #+#    #+#              #
-#    Updated: 2025/11/18 20:32:41 by rcompain         ###   ########.fr        #
+#    Updated: 2025/12/08 18:03:57 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ FLAGS = -Werror -Wextra -Wall
 # **************************************************************************** #
 
 SRC = 		ft_atoi.c \
+			ft_atol.c \
 			ft_bzero.c \
 			ft_calloc.c \
 			ft_isalnum.c \

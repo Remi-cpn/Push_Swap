@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 14:48:41 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/06 14:11:55 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/08 16:51:10 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,5 @@ int	*check_best_index(t_stack *map, t_stack *b)
 		index.curent = NULL;
 		i++;
 	}
-	ft_printf("\nMeilleur Index=%d Valeur=%d Senario=%d Moves=%d\n",
-		index.best[0], b->tab[index.best[0]], index.best[1], index.best[2]);
 	return (index.best);
 }
