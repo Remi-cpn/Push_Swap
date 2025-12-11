@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/12/11 17:35:30 by remi-cpn         ###   ########.fr        #
+#    Updated: 2025/12/11 20:35:36 by remi-cpn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -57,17 +57,20 @@ all: banner $(LIBFT_A) $(NAME)
 
 $(NAME): progress_bar_project $(OBJ)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) $(OBJ) $(LIBFT_A) -o $(NAME)
-	@echo "$(BOLT) $(GREEN)         Project compiled successfully ✅$(RESET)\n\n"
+	@echo "\r\033[2K$(CYAN)Compiled files: $(BOLD)$(GREEN)[OK]$(RESET)"
+	@echo "$(BOLD) $(GREEN)\n         Project compiled successfully ✅$(RESET)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
-	@echo "$(CYAN)Compiled files: $<$(RESET)"
+	@printf "\r\033[2K$(CYAN)Compiled files: %s$(RESET)" "$<"
+	@sleep 0.05
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(LIBFT_A):progress_bar_libft
 	@make -s -C $(LIBFT_DIR)
+	@echo "\r\033[2K$(CYAN)Compiled files: $(BOLD)$(GREEN)[OK]\n$(RESET)"
 	
 
 clean:
@@ -95,7 +98,9 @@ ORANGE  = \033[38;5;214m
 YELLOW  = \033[38;5;228m
 RESET		= \033[0m
 
-BOLD		=\033[1m
+BOLD		= \033[1m
+DIM			= \033[2m
+SHINNY		= \033[5m
 
 BANNER = \
 "$(BOLD)$(ORANGE)\n\n  	          Compilation ...  $(RESET)\n"\
@@ -106,7 +111,7 @@ banner:
 progress_bar_libft:	
 	@total=30; \
 	i=1; \
-	printf "📚  Libft  ["; \
+	printf "📚 $(BOLD)Libft$(RESET)  ["; \
 	while [ $$i -le $$total ]; do \
 		bar="$$(printf '█%.0s' $$(seq 1 $$i))"; \
 		spaces=""; \
@@ -114,16 +119,16 @@ progress_bar_libft:
 			spaces="$$(printf ' %.0s' $$(seq 1 $$((total - i))))"; \
 		fi; \
 		pct=$$((i * 100 / $$total)); \
-		printf "\r📚  Libft  [$$bar$$spaces] Loading:%3d%%" $$pct; \
-		sleep 0.01; \
+		printf "\r📚 $(BOLD)Libft$(RESET)  [$(DIM)$$bar$$spaces$(RESET)] Loading:%3d%%" $$pct; \
+		sleep 0.02; \
 		i=$$((i+1)); \
 	done; \
-	printf "\033[2K\r📚  Libft %s [██████████████████████████████] \033[32mSuccess !\033[0m\n\n"
+	printf "\033[2K\r📚 $(BOLD)Libft$(RESET) %s [$(DIM)██████████████████████████████$(RESET)] \033[32mSuccess !\033[0m\n"
 
 progress_bar_project:
 	@total=30; \
 	i=1; \
-	printf "📝 Project ["; \
+	printf "📝 $(BOLD)Project$(RESET) ["; \
 	while [ $$i -le $$total ]; do \
 		bar="$$(printf '█%.0s' $$(seq 1 $$i))"; \
 		spaces=""; \
@@ -131,11 +136,11 @@ progress_bar_project:
 			spaces="$$(printf ' %.0s' $$(seq 1 $$((total - i))))"; \
 		fi; \
 		pct=$$((i * 100 / $$total)); \
-		printf "\r📝 Project [$$bar$$spaces] Loading:%3d%%" $$pct; \
-		sleep 0.01; \
+		printf "\r📝 $(BOLD)Project$(RESET) [$(DIM)$$bar$$spaces$(RESET)] Loading:%3d%%" $$pct; \
+		sleep 0.02; \
 		i=$$((i+1)); \
 	done; \
-	printf "\033[2K\r📝 Project %s[██████████████████████████████] \033[32mSuccess !\033[0m\n\n"
+	printf "\033[2K\r📝 $(BOLD)Project$(RESET) %s[$(DIM)██████████████████████████████$(RESET)] \033[32mSuccess !\033[0m\n"
 
 
 .PHONY: all clean fclean re banner progress_bar_libft progress_bar_project

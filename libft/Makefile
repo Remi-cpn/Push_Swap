@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@student.42angouleme.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/14 17:34:44 by rcompain          #+#    #+#              #
-#    Updated: 2025/12/08 18:03:57 by rcompain         ###   ########.fr        #
+#    Updated: 2025/12/11 18:27:21 by remi-cpn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,8 @@ OBJECTS = ${SOURCES:.c=.o}
 
 %.o: %.c
 	@${CC} ${FLAG} -c $< -o $@
+	@printf "\r\033[2K$(CYAN)Compiled files: %s$(RESET)" "$<"
+	@sleep 0.02
 
 ${NAME}: ${OBJECTS} 
 	@ar rcs ${NAME} ${OBJECTS} 
@@ -103,5 +105,13 @@ fclean: clean
 	@rm -rf ${NAME}
 
 re: fclean all
+
+# **************************************************************************** #
+#                                   DECO & COLORS                              #
+# **************************************************************************** #
+
+CYAN		= \033[36m
+RESET		= \033[0m
+
 
 .PHONY: all clean fclean re
