@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 17:06:20 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:58:59 by remi-cpn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	print_lst(t_list *lst)
 	}
 }
 
-static int	algo(t_stack *map, t_stack *b)
+static int	algo_waver(t_stack *map, t_stack *b)
 {
 	t_list	*lst;
 
 	lst = algo_sort(map, b, 0);
 	if (!lst)
-		return (-1);
+		return (ERROR);
 	opti(&lst);
 	print_lst(lst);
 	ft_lstclear(&lst, free);
@@ -45,20 +45,20 @@ int	main(int ac, char **av)
 
 	if (ac <= 1)
 	{
-		write(2, "Arg ?\n", 6);
-		return (0);
+		write(2, "Error\n", 6);
+		return (1);
 	}
 	a = parsing(ac, av);
 	if (!a)
-		return (0);
+		return (1);
 	map = init_stack(a->size, a->size);
 	b = init_stack(a->size, 0);
 	if (!b || !map)
 	{
 		free_stack(a, b, map);
-		return (0);
+		return (1);
 	}
 	mapping(a, map);
-	algo(map, b);
+	algo_waver(map, b);
 	free_stack(a, b, map);
 }

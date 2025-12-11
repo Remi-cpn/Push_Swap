@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:30:46 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 16:32:08 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:23:06 by remi-cpn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	put_space(t_list *curent, int i)
 	{
 		((char *)curent->content)[0] = ' ';
 		curent = curent->next;
-		i --;
+		i--;
 	}
 }

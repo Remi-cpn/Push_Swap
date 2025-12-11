@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 19:51:57 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:24:57 by remi-cpn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static int	parcing_check(int ac, char **av)
 			if (c == ' ')
 				continue ;
 			write(2, "Error\n", 6);
-			return (-1);
+			return (ERROR);
 		}
 		ac--;
 	}
@@ -148,7 +148,7 @@ t_stack	*parsing(int ac, char **av)
 		free_str(tab_str);
 		return (NULL);
 	}
-	if (build_a(a, tab_str) == -1)
+	if (build_a(a, tab_str) == ERROR)
 		return (NULL);
 	return (a);
 }

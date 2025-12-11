@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 16:52:05 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:27:14 by remi-cpn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	new_cmd(t_list **lst, t_stack *stack1, t_stack *stack2,
 		str = (const char *)cmd(stack1, stack2);
 	dup = ft_strdup(str);
 	if (!dup)
-		return (-1);
+		return (ERROR);
 	new = ft_lstnew(dup);
 	if (!new)
-		return (-1);
+		return (ERROR);
 	ft_lstadd_back(lst, new);
 	return (0);
 }

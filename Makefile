@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/12/08 18:20:49 by rcompain         ###   ########.fr        #
+#    Updated: 2025/12/11 17:35:30 by remi-cpn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -95,10 +95,10 @@ ORANGE  = \033[38;5;214m
 YELLOW  = \033[38;5;228m
 RESET		= \033[0m
 
-BOLT		=\033[1m
+BOLD		=\033[1m
 
 BANNER = \
-"$(BOLT)$(ORANGE)\n\n  	          Compilation ...  $(RESET)\n"\
+"$(BOLD)$(ORANGE)\n\n  	          Compilation ...  $(RESET)\n"\
 
 banner:
 	@echo $(BANNER)
@@ -138,5 +138,5 @@ progress_bar_project:
 	printf "\033[2K\r📝 Project %s[██████████████████████████████] \033[32mSuccess !\033[0m\n\n"
 
 
-.PHONY: all clean fclean re banner progress_bar_libft
+.PHONY: all clean fclean re banner progress_bar_libft progress_bar_project
 
