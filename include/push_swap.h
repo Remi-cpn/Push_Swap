@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/11 16:18:49 by remi-cpn         ###   ########.fr       */
+/*   Updated: 2025/12/12 15:51:49 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
-
-int		main(int ac, char **av);
 
 /* --------------------------------- STRUCT -------------------------------- */
 
@@ -57,7 +55,7 @@ typedef enum e_utils
 	ERROR = -1,
 	FALSE = 0,
 	TRUE = 1,
-	NBR_CHUNK = 4
+	NBR_CHUNK = 3
 }	t_utils;
 
 /* --------------------------------- MOVES --------------------------------- */

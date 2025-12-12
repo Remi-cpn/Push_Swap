@@ -6,12 +6,16 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:30:46 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/11 15:23:06 by remi-cpn         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:38:38 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * Count the number of rbs, then the number of ras. This also works for rrbs 
+ * and rras.
+ */
 int	*count_rr_or_rrr(t_list *curent, char *str1, char *str2, int size)
 {
 	t_list	*tmp;
@@ -32,6 +36,9 @@ int	*count_rr_or_rrr(t_list *curent, char *str1, char *str2, int size)
 	return (count);
 }
 
+/**
+ * Adds a space to the first character of the content of a list.
+ */
 void	put_space(t_list *curent, int i)
 {
 	while (i > 0)

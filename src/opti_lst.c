@@ -6,12 +6,15 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 13:30:37 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 16:53:39 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/12 16:32:07 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * Removes lists with a space as the first character.
+ */
 static void	purify_space(t_list **lst, t_list *curent)
 {
 	t_list	*prev;
@@ -37,6 +40,10 @@ static void	purify_space(t_list **lst, t_list *curent)
 	}
 }
 
+/**
+ * Replace rrb with rrr according to the number of consecutive rrb rra  
+ * sequences.
+ */
 static void	replace_rrr(t_list *curent)
 {
 	int		*count;
@@ -65,6 +72,9 @@ static void	replace_rrr(t_list *curent)
 	}
 }
 
+/**
+ * Replace rb with rr according to the number of consecutive rb ra sequences.
+ */
 static void	replace_rr(t_list *curent)
 {
 	int		*count;
@@ -93,6 +103,9 @@ static void	replace_rr(t_list *curent)
 	}
 }
 
+/**
+ * Removes lists reproducing the sequence pb pa.
+ */
 static void	del_pa_pb(t_list **lst, t_list *curent)
 {
 	t_list	*prev;
@@ -120,6 +133,9 @@ static void	del_pa_pb(t_list **lst, t_list *curent)
 	}
 }
 
+/**
+ * This Fonction call diferrents optimisations fonctions.
+ */
 void	opti(t_list **lst)
 {
 	if (lst)

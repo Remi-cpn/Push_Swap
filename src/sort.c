@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/11 15:27:14 by remi-cpn         ###   ########.fr       */
+/*   Updated: 2025/12/12 18:46:22 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,12 @@ static int	push_with_chunk_to_b(t_stack *map, t_stack *b, t_list **lst, int n)
 	size = map->size;
 	while (size > 0 && flag == 0)
 	{
-		if (map->tab[0] >= (chunk - n) && map->tab[0] <= chunk)
+		if (map->tab[0] <= chunk)
+		{
 			flag = new_cmd(lst, map, b, pb);
+			if (b->tab[0] <= chunk - (n / 2))
+				flag = new_cmd(lst, b, NULL, rb);
+		}
 		else
 			flag = new_cmd(lst, map, NULL, ra);
 		size--;
