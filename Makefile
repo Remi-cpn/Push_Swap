@@ -6,7 +6,7 @@
 #    By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 09:56:21 by rcompain          #+#    #+#              #
-#    Updated: 2025/12/11 20:35:36 by remi-cpn         ###   ########.fr        #
+#    Updated: 2025/12/15 17:36:34 by rcompain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #
@@ -40,6 +40,7 @@ SRC			= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/move_reverse_rotate.c \
 			  $(SRC_DIR)/utils.c \
 			  $(SRC_DIR)/sort.c \
+			  $(SRC_DIR)/tiny_sort.c \
 			  $(SRC_DIR)/sort_best_index.c \
 			  $(SRC_DIR)/parsing.c \
 			  $(SRC_DIR)/parsing_utils.c \

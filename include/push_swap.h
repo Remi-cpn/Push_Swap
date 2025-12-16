@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/12 15:51:49 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:55:31 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,40 +60,60 @@ typedef enum e_utils
 
 /* --------------------------------- MOVES --------------------------------- */
 
-/* move_push */
+/* move_push.c */
+char	*sa(t_stack *a, t_stack *b);
 char	*pa(t_stack *a, t_stack *b);
 char	*pb(t_stack *a, t_stack *b);
 
-/* move_rotate */
+/* move_rotate.c */
 char	*ra(t_stack *a, t_stack *b);
 char	*rb(t_stack *b, t_stack *a);
 void	rr(t_stack *a, t_stack *b);
 
-/* move_reverse_rotate */
+/* move_reverse_rotate.c */
 char	*rra(t_stack *a, t_stack *b);
 char	*rrb(t_stack *b, t_stack *a);
 void	rrr(t_stack *a, t_stack *b);
 
 /* ------------------------------- PARSING --------------------------------- */
 
+/* parsing.c */
 t_stack	*parsing(int ac, char **av);
-int		empty_str(char *str);
-int		already_exit(t_stack *a, int nbr);
 
 /* -------------------------------- ALGO ----------------------------------- */
 
+/* sort.c */
 t_list	*algo_sort(t_stack *map, t_stack *b, int flag);
+int		push_best_to_a(t_stack *map, t_stack *b, t_list **lst, int flag);
+
+/* tiny_sort.c */
+int		tiny_sort(t_stack *map, t_stack *b, t_list **lst);
+
+/* sort_best_index.c */
 int		*check_best_index(t_stack *map, t_stack *b);
+
+/* opti_lst.c */
 void	opti(t_list **lst);
 
 /* -------------------------------- UTILS ---------------------------------- */
 
+/* utils.c */
 void	mapping(t_stack *a, t_stack *map);
+int		new_cmd(t_list **lst, t_stack *stack1, t_stack *stack2,
+			char *(*cmd)(t_stack *, t_stack *));
+int		stack_sorted(t_stack *stack);
+
+/* parsing_utils.c */
+int		empty_str(char *str);
+int		already_exit(t_stack *a, int nbr);
+
+/* opti_lst_utils.c */
 int		*count_rr_or_rrr(t_list *curent, char *str1, char *str2, int size);
 void	put_space(t_list *curent, int i);
 
 /* ------------------------------- MEMORY ---------------------------------- */
 
+/* memory.c */
 t_stack	*init_stack(int ac, size_t size);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
 void	free_str(char **str);

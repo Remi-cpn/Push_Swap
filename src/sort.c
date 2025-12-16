@@ -6,32 +6,11 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:04:54 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/12 18:46:22 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:55:07 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-static int	new_cmd(t_list **lst, t_stack *stack1, t_stack *stack2,
-				char *(*cmd)(t_stack *, t_stack *))
-{
-	char		*dup;
-	const char	*str;
-	t_list		*new;
-
-	if (!stack2)
-		str = (const char *)cmd(stack1, NULL);
-	else
-		str = (const char *)cmd(stack1, stack2);
-	dup = ft_strdup(str);
-	if (!dup)
-		return (ERROR);
-	new = ft_lstnew(dup);
-	if (!new)
-		return (ERROR);
-	ft_lstadd_back(lst, new);
-	return (0);
-}
 
 static int	rotate_min_to_top(t_stack *map, t_list **lst, int flag)
 {
@@ -52,7 +31,7 @@ static int	rotate_min_to_top(t_stack *map, t_list **lst, int flag)
 	return (flag);
 }
 
-static int	push_best_to_a(t_stack *map, t_stack *b, t_list **lst, int flag)
+int	push_best_to_a(t_stack *map, t_stack *b, t_list **lst, int flag)
 {
 	int			mv;
 	const int	*best = check_best_index(map, b);
@@ -118,14 +97,14 @@ static int	push_with_chunk_to_b(t_stack *map, t_stack *b, t_list **lst, int n)
 t_list	*algo_sort(t_stack *map, t_stack *b, int flag)
 {
 	t_list		*lst;
-	int			n;
 
-	if (map->size < NBR_CHUNK)
-		n = NBR_CHUNK;
-	else
-		n = map->size / NBR_CHUNK;
+	if (stack_sorted(map) == TRUE)
+		return (NULL);
 	lst = NULL;
-	flag = push_with_chunk_to_b(map, b, &lst, n);
+	if (map->size <= 5)
+		flag = tiny_sort(map, b, &lst);
+	else
+		flag = push_with_chunk_to_b(map, b, &lst, map->size / NBR_CHUNK);
 	while (b->size > 0 && flag == 0)
 	{
 		flag = push_best_to_a(map, b, &lst, flag);

@@ -6,11 +6,28 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:29:31 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 16:49:27 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/15 17:31:48 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+/**
+ * Swap the first 2 elements at the top of stack a.
+ **/
+char	*sa(t_stack *a, t_stack *b)
+{
+	int	tmp;
+
+	(void)b;
+	if (a->size > 1)
+	{
+		tmp = a->tab[0];
+		a->tab[0] = a->tab[1];
+		a->tab[1] = tmp;
+	}
+	return ("sa\n");
+}
 
 /**
  * Push the first elements at the top of stack b on the top of stack a.

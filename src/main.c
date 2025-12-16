@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/11 15:58:59 by remi-cpn         ###   ########.fr       */
+/*   Updated: 2025/12/13 16:05:09 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	main(int ac, char **av)
 	t_stack	*map;
 
 	if (ac <= 1)
-	{
-		write(2, "Error\n", 6);
 		return (1);
-	}
 	a = parsing(ac, av);
 	if (!a)
 		return (1);
@@ -61,4 +58,5 @@ int	main(int ac, char **av)
 	mapping(a, map);
 	algo_waver(map, b);
 	free_stack(a, b, map);
+	return (0);
 }
