@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:04:51 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/01 14:29:46 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/17 19:35:33 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * This fonction free a char ** and set this variable to NULL.
  **/
-void	free_str(char **str)
+void	free_tab_str(char **str)
 {
 	int	i;
 

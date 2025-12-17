@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/16 16:55:31 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/17 19:35:44 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ void	put_space(t_list *curent, int i);
 /* memory.c */
 t_stack	*init_stack(int ac, size_t size);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
-void	free_str(char **str);
+void	free_tab_str(char **str);
 
 #endif

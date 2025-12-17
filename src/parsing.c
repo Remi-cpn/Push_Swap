@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/11 15:24:57 by remi-cpn         ###   ########.fr       */
+/*   Updated: 2025/12/17 19:46:34 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,33 @@
 #include <limits.h>
 
 /**
- * Cette fonction initialise la Stack a.
+ * This function fills my stack while controlling INT_MIN and INT_MAX as well 
+ * as the repetition of values.
  */
-static int	build_a(t_stack *a, char **str)
+static int	build_a(t_stack *a, char **str, int flag)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && flag == 0)
 	{
 		if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
-		{
-			write(2, "Error\n", 6);
-			return (ERROR);
-		}
-		if (a->size > 1 && already_exit(a, ft_atoi(str[i])) == TRUE)
-		{
-			write(2, "Error\n", 6);
-			return (ERROR);
-		}
-		a->tab[i] = ft_atoi(str[i]);
+			flag = ERROR;
+		if (already_exit(a, ft_atoi(str[i])) == TRUE)
+			flag = ERROR;
+		if (flag == 0)
+			a->tab[i] = ft_atoi(str[i]);
+		a->size++;
 		i++;
 	}
-	free_str(str);
-	return (0);
+	if (flag == ERROR)
+		write(2, "Error\n", 6);
+	free_tab_str(str);
+	return (flag);
 }
 
 /**
- * Cette fonction count le nombre d'int present dans str.
+ * This function counts the number of values in a string.
  */
 static int	parcing_count(char *str)
 {
@@ -65,11 +64,14 @@ static int	parcing_count(char *str)
 	return (count);
 }
 
+/**
+ * This function puts the different arguments into a single string 
+ * separated by spaces.
+ */
 static char	*parcing_join(int ac, char **av)
 {
 	int		i;
 	char	*str;
-	char	*tmp;
 
 	i = 0;
 	str = ft_calloc(1, sizeof(char));
@@ -77,78 +79,76 @@ static char	*parcing_join(int ac, char **av)
 		return (NULL);
 	while (i < ac)
 	{
-		tmp = ft_strjoin(str, av[i + 1]);
-		free(str);
-		str = NULL;
-		str = ft_strjoin(tmp, " ");
-		free(tmp);
-		tmp = NULL;
+		str = ft_strjoin(str, av[i + 1], 1, 0);
+		if (!str)
+			return (NULL);
+		str = ft_strjoin(str, " ", 1, 0);
+		if (!str)
+			return (NULL);
 		i++;
 	}
 	return (str);
 }
 
 /**
- * Cette fonction renvoi 'Erreur' si les arguments ne sont pas valides.
+ * This function checks the validity of the arguments.
  */
-static int	parcing_check(int ac, char **av)
+static int	parcing_check(int ac, char **av, int flag)
 {
 	int		i;
 	char	c;
-	char	count;
 
-	count = 0;
-	while (ac > 0)
+	while (ac > 0 && flag == 0)
 	{
 		i = -1;
 		if (empty_str(av[ac]) == TRUE)
-		{
-			write(2, "Error\n", 6);
-			return (ERROR);
-		}
-		while (av[ac][++i])
+			flag = ERROR;
+		while (av[ac][++i] && flag == 0)
 		{
 			c = av[ac][i];
-			count++;
 			if (ft_isdigit(c) && av[ac][i + 1] != '-' && av[ac][i + 1] != '+')
 				continue ;
 			if ((c == '+' || c == '-') && ft_isdigit(av[ac][i + 1]))
 				continue ;
 			if (c == ' ')
 				continue ;
-			write(2, "Error\n", 6);
-			return (ERROR);
+			flag = ERROR;
 		}
 		ac--;
 	}
-	return (count);
+	if (flag == ERROR)
+		write(2, "Error\n", 6);
+	return (flag);
 }
 
-/**
- * This Fonction 
- */
 t_stack	*parsing(int ac, char **av)
 {
-	const int	check = parcing_check(ac - 1, av);
 	char		*str;
 	char		**tab_str;
 	t_stack		*a;
 	int			count;
 
-	if (check == ERROR)
+	if (parcing_check(ac - 1, av, 0) == ERROR)
 		return (NULL);
 	str = parcing_join(ac - 1, av);
+	if (!str)
+		return (NULL);
 	count = parcing_count(str);
 	tab_str = ft_split(str, ' ');
 	free(str);
 	str = NULL;
-	a = init_stack(count, count);
+	if (!tab_str)
+		return (NULL);
+	a = init_stack(count, 0);
 	if (!a)
 	{
-		free_str(tab_str);
+		free_tab_str(tab_str);
 		return (NULL);
 	}
-	if (build_a(a, tab_str) == ERROR)
+	if (build_a(a, tab_str, 0) == ERROR)
+	{
+		free_stack(a, NULL, NULL);
 		return (NULL);
+	}
 	return (a);
 }
