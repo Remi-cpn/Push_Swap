@@ -6,11 +6,17 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:04:51 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/17 19:35:33 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:36:36 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	free_and_null(void *p)
+{
+	free(p);
+	p = NULL;
+}
 
 /**
  * This fonction free a char ** and set this variable to NULL.

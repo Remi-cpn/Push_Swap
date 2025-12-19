@@ -6,12 +6,15 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/17 19:45:42 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 19:23:30 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * This function sends the move instructions to output 1.
+ */
 static void	print_lst(t_list *lst)
 {
 	t_list	*tmp;
@@ -27,14 +30,17 @@ static void	print_lst(t_list *lst)
 static int	algo_waver(t_stack *map, t_stack *b)
 {
 	t_list	*lst;
+	int		flag;
 
+	flag = 0;
 	lst = algo_sort(map, b, 0);
 	if (!lst)
 		return (ERROR);
-	opti(&lst);
-	print_lst(lst);
+	flag = opti(&lst);
+	if (flag == 0)
+		print_lst(lst);
 	ft_lstclear(&lst, free);
-	return (0);
+	return (flag);
 }
 
 int	main(int ac, char **av)
@@ -42,6 +48,7 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 	t_stack	*map;
+	int		flag;
 
 	if (ac <= 1)
 		return (1);
@@ -56,7 +63,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	mapping(a, map);
-	algo_waver(map, b);
+	flag = algo_waver(map, b);
 	free_stack(a, b, map);
+	if (flag == ERROR)
+		return (1);
 	return (0);
 }

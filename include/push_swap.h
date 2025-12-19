@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 15:54:20 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/17 19:35:44 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 19:18:24 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		tiny_sort(t_stack *map, t_stack *b, t_list **lst);
 int		*check_best_index(t_stack *map, t_stack *b);
 
 /* opti_lst.c */
-void	opti(t_list **lst);
+int		opti(t_list **lst);
 
 /* -------------------------------- UTILS ---------------------------------- */
 
@@ -109,7 +109,7 @@ int		already_exit(t_stack *a, int nbr);
 
 /* opti_lst_utils.c */
 int		*count_rr_or_rrr(t_list *curent, char *str1, char *str2, int size);
-void	put_space(t_list *curent, int i);
+void	put_space(t_list *curent, int i, int flag);
 
 /* ------------------------------- MEMORY ---------------------------------- */
 
@@ -117,5 +117,6 @@ void	put_space(t_list *curent, int i);
 t_stack	*init_stack(int ac, size_t size);
 void	free_stack(t_stack *a, t_stack *b, t_stack *map);
 void	free_tab_str(char **str);
+void	free_and_null(void *p);
 
 #endif

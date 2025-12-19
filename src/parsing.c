@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:24:34 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/17 19:46:34 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 13:35:59 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	build_a(t_stack *a, char **str, int flag)
 	{
 		if (ft_atol(str[i]) > INT_MAX || ft_atol(str[i]) < INT_MIN)
 			flag = ERROR;
-		if (already_exit(a, ft_atoi(str[i])) == TRUE)
+		if (flag == 0 && already_exit(a, ft_atoi(str[i])) == TRUE)
 			flag = ERROR;
 		if (flag == 0)
 			a->tab[i] = ft_atoi(str[i]);
@@ -34,7 +34,10 @@ static int	build_a(t_stack *a, char **str, int flag)
 		i++;
 	}
 	if (flag == ERROR)
+	{
+		free_stack(a, NULL, NULL);
 		write(2, "Error\n", 6);
+	}
 	free_tab_str(str);
 	return (flag);
 }
@@ -42,7 +45,7 @@ static int	build_a(t_stack *a, char **str, int flag)
 /**
  * This function counts the number of values in a string.
  */
-static int	parcing_count(char *str)
+static int	parsing_count(char *str)
 {
 	int	i;
 	int	count;
@@ -68,7 +71,7 @@ static int	parcing_count(char *str)
  * This function puts the different arguments into a single string 
  * separated by spaces.
  */
-static char	*parcing_join(int ac, char **av)
+static char	*parsing_join(int ac, char **av)
 {
 	int		i;
 	char	*str;
@@ -93,7 +96,7 @@ static char	*parcing_join(int ac, char **av)
 /**
  * This function checks the validity of the arguments.
  */
-static int	parcing_check(int ac, char **av, int flag)
+static int	parsing_check(int ac, char **av, int flag)
 {
 	int		i;
 	char	c;
@@ -121,6 +124,10 @@ static int	parcing_check(int ac, char **av, int flag)
 	return (flag);
 }
 
+/**
+ * This function is the master function of the parsing. 
+ * It controls the return in case of a malloc failure.
+ */
 t_stack	*parsing(int ac, char **av)
 {
 	char		*str;
@@ -128,12 +135,12 @@ t_stack	*parsing(int ac, char **av)
 	t_stack		*a;
 	int			count;
 
-	if (parcing_check(ac - 1, av, 0) == ERROR)
+	if (parsing_check(ac - 1, av, 0) == ERROR)
 		return (NULL);
-	str = parcing_join(ac - 1, av);
+	str = parsing_join(ac - 1, av);
 	if (!str)
 		return (NULL);
-	count = parcing_count(str);
+	count = parsing_count(str);
 	tab_str = ft_split(str, ' ');
 	free(str);
 	str = NULL;
@@ -146,9 +153,6 @@ t_stack	*parsing(int ac, char **av)
 		return (NULL);
 	}
 	if (build_a(a, tab_str, 0) == ERROR)
-	{
-		free_stack(a, NULL, NULL);
 		return (NULL);
-	}
 	return (a);
 }

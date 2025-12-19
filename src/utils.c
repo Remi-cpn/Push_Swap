@@ -6,12 +6,16 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 15:26:36 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/16 17:10:28 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 13:46:33 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * This function calls the movement function given as a parameter while 
+ * storing the instruction as a string returned by the latter in a list.
+ */
 int	new_cmd(t_list **lst, t_stack *stack1, t_stack *stack2,
 				char *(*cmd)(t_stack *, t_stack *))
 {
@@ -33,6 +37,9 @@ int	new_cmd(t_list **lst, t_stack *stack1, t_stack *stack2,
 	return (0);
 }
 
+/**
+ * This function checks if the stack is sorted.
+ */
 int	stack_sorted(t_stack *stack)
 {
 	int	i;
@@ -47,6 +54,10 @@ int	stack_sorted(t_stack *stack)
 	return (TRUE);
 }
 
+/**
+ * This function creates a new stack map which is an index of the 
+ * values in the stack.
+ */
 void	mapping(t_stack *a, t_stack *map)
 {
 	int	i;

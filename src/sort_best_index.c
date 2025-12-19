@@ -6,12 +6,16 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 14:48:41 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/08 16:51:10 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/19 15:37:30 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * This function compares the different scenarios and returns the one with 
+ * the lowest cost.
+ **/
 static int	*best_cost(int cost_ra_rb, int cost_rra_rrb, int cost_ra_rrb,
 					int cost_rra_rb)
 {
@@ -40,6 +44,9 @@ static int	*best_cost(int cost_ra_rb, int cost_rra_rrb, int cost_ra_rrb,
 	return (cost_best);
 }
 
+/**
+ * This function calculates the index of positions in map of a value from b.
+ **/
 static int	pos_in_a(t_stack *map, int value)
 {
 	int	i;
@@ -48,7 +55,7 @@ static int	pos_in_a(t_stack *map, int value)
 
 	if (map->size == 0)
 		return (0);
-	i = 0;
+	i = -1;
 	i_max = 0;
 	i_min = 0;
 	while (++i < (int)map->size)
@@ -69,6 +76,9 @@ static int	pos_in_a(t_stack *map, int value)
 	return (i + 1);
 }
 
+/**
+ * This function compares two values and returns the larger one.
+ **/
 static int	cost_calc(int value1, int value2)
 {
 	int	result;
@@ -80,6 +90,10 @@ static int	cost_calc(int value1, int value2)
 	return (result);
 }
 
+/**
+ * This function calculates the number of moves for each scenario for 
+ * a given value.
+ **/
 static int	*best_move(t_stack *map, t_stack *b, int i)
 {
 	const int	pos_a = pos_in_a(map, b->tab[i]);
@@ -104,6 +118,10 @@ static int	*best_move(t_stack *map, t_stack *b, int i)
 	return (c.best);
 }
 
+/**
+ * This function compares the number of costs for each value and chooses 
+ * the best.
+ **/
 int	*check_best_index(t_stack *map, t_stack *b)
 {
 	int		i;
@@ -117,15 +135,17 @@ int	*check_best_index(t_stack *map, t_stack *b)
 	{
 		index.curent = best_move(map, b, i);
 		if (!index.curent)
+		{
+			free_and_null(index.best);
 			return (NULL);
+		}
 		if (i == 0 || index.curent[1] < index.best[2])
 		{
 			index.best[0] = i;
 			index.best[1] = index.curent[0];
 			index.best[2] = index.curent[1];
 		}
-		free(index.curent);
-		index.curent = NULL;
+		free_and_null(index.curent);
 		i++;
 	}
 	return (index.best);
