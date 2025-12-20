@@ -1,6 +1,8 @@
-# Push_Swap
+🇬🇧 [🇫🇷](#🇫🇷push_swap)
 
-*This project has been created as part of the 42 curriculum by* `*rcompain*`.
+# 🇬🇧 Push_Swap
+
+*This project has been created as part of the 42 curriculum by* _`rcompain`_.
 
 ## Sommary
 
@@ -193,3 +195,53 @@ and optimization strategies:
 
 
 [Top](#push_swap)
+
+
+
+# 🇫🇷 Push_Swap
+
+*Ce projet a été créé dans le cadre du cursus 42 par* _`rcompain`_.
+
+## Sommaire
+
+ - [Description](#description)
+ - [Instructions](#instructions)
+   - [Compilation](#compilation)
+   - [Exécution](#exécution)
+ - [Opérations autorisées](#opérations-autorisées)
+ - [Aperçu de l'algorithme](#aperçu-de-lalgorithme)
+   - [Indexation](#indexation)
+   - [Optimisation pour petites piles](#optimisation-pour-petites-piles)
+   - [Push par chunks vers la pile B (Algorithme Papillon)](#push-par-chunks-vers-la-pile-b-algorithme-papillon)
+   - [Calcul du coût et réinsertion dans la pile A](#calcul-du-coût-et-réinsertion-dans-la-pile-a)
+   - [Stockage et optimisation des instructions](#stockage-et-optimisation-des-instructions)
+   - [Rotation finale et sortie](#rotation-finale-et-sortie)
+ - [Gestion des erreurs](#gestion-des-erreurs)
+ - [Ressources](#ressources)
+
+---
+
+## Description
+
+**Push_swap** est un projet algorithmique dont l'objectif est de trier une pile d'entiers 
+en utilisant un nombre limité d'instructions et le moins d'opérations possible.
+
+Le programme reçoit une liste d'entiers en arguments, les place dans une 
+pile appelée **pile A**, et les trie par ordre croissant en utilisant une 
+pile auxiliaire (**pile B**). Seul un ensemble spécifique d'opérations sur les piles est 
+autorisé, ce qui rend ce projet un défi en conception d'algorithmes, optimisation et 
+manipulation de structures de données.
+
+L'objectif principal est non seulement de trier correctement les nombres, mais aussi 
+de le faire efficacement, en minimisant le nombre total d'opérations.
+
+---
+
+## Instructions
+
+### Compilation
+
+Pour compiler ce projet, exécutez :
+
+```bash
+make
