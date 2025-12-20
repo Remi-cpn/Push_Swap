@@ -1,4 +1,4 @@
-[🇫🇷 French](#🇫🇷push_swap)
+[🇫🇷 French](#french)
 
 # 🇬🇧 Push_Swap
 
@@ -197,7 +197,7 @@ and optimization strategies:
 [Top](#push_swap)
 
 
-# <🇫🇷 French>
+<a id="french"></a>
 # 🇫🇷 Push_Swap
 
 *Ce projet a été créé dans le cadre du cursus 42 par* _`rcompain`_.
