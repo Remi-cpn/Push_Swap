@@ -1,23 +1,25 @@
 # Push_Swap
 
-*This project has been created as part of the 42 curriculum by <rcompain>.*
+*This project has been created as part of the 42 curriculum by* `*rcompain*`.
 
 ## Sommary
 
-- [Description](#description)
-- [Instructions](#instructions)
-  - [Compilation](#compilation)
-  - [Execution](#execution)
-- [Allowed Operations](#allowed-operations)
-- [Algorithm Overview](#algorithm-overview)
-  - [Index Mapping](#index-mapping)
-  - [Small Stack Optimization](#small-stack-optimization)
-  - [Chunk-Based Push to Stack B (Butterfly Algorithm)](#chunk-based-push-to-stack-b-butterfly-algorithm)
-  - [Cost Calculation and Reinsertion into Stack A](#cost-calculation-and-reinsertion-into-stack-a)
-  - [Instruction Storage and Optimization](#instruction-storage-and-optimization)
-  - [Final Rotation and Output](#final-rotation-and-output)
-- [Error Handling](#error-handling)
-- [Resources](#resources)
+ - [Description](#description)
+ - [Instructions](#instructions)
+   - [Compilation](#compilation)
+   - [Execution](#execution)
+ - [Allowed Operations](#allowed-operations)
+ - [Algorithm Overview](#algorithm-overview)
+   - [Index Mapping](#index-mapping)
+   - [Small Stack Optimization](#small-stack-optimization)
+   - [Chunk-Based Push to Stack B (Butterfly Algorithm)](#chunk-based-push-to-stack-b-butterfly-algorithm)
+   - [Cost Calculation and Reinsertion into Stack A](#cost-calculation-and-reinsertion-into-stack-a)
+   - [Instruction Storage and Optimization](#instruction-storage-and-optimization)
+   - [Final Rotation and Output](#final-rotation-and-output)
+ - [Error Handling](#error-handling)
+ - [Resources](#resources)
+
+---
 
 ## Description
 
@@ -84,10 +86,10 @@ The program will output a sequence of instructions that sorts the stack.
 
 The program uses the following operations:
 
-* `sa` -> swap the first two elements of stack a.
-* `pa`, `pb` -> push elements between stacks.
-* `ra`, `rb`, `rr` -> rotate stack a or b or same time.
-* `rra`, `rrb`, `rrr` reverse rotate stack a or b or same time.
+ * `sa` -> swap the first two elements of stack a.
+ * `pa`, `pb` -> push elements between stacks.
+ * `ra`, `rb`, `rr` -> rotate stack a or b or same time.
+ * `rra`, `rrb`, `rrr` reverse rotate stack a or b or same time.
 
 ---
 
@@ -130,10 +132,10 @@ of reinsertion for each element in **stack B**.
 
 For every value, all possible rotation scenarios are evaluated:
 
-- `ra` + `rb`
-- `rra` + `rrb`
-- `ra` + `rrb`
-- `rra` + `rb`
+ - `ra` + `rb`
+ - `rra` + `rrb`
+ - `ra` + `rrb`
+ - `rra` + `rb`
 
 The element with the lowest total cost is selected and pushed back into **stack A**.
 This process is repeated until **stack B** is empty.
@@ -164,10 +166,10 @@ representing the final solution.
 
 The program handles the following errors :
 
-* Non-numeric arguments.
-* Duplicates numbers.
-* Integer overflow/underflow.
-* Invalid input format.
+ * Non-numeric arguments.
+ * Duplicates numbers.
+ * Integer overflow/underflow.
+ * Invalid input format.
 
 In caseof an error, the program outputs:
 
@@ -179,13 +181,15 @@ Error
 
 ## Resources
 
-* 42 Subject PDF: *Push_swap*.
-* Excalidraw for brainstorming and structuring ideas.
-* Understanding the different types of algorithms. [Algomius](https://www.youtube.com/@algomius) on Youtube.
-* The 42 following students for the time spent discussing ideas, algorithms,
+ * 42 Subject PDF: *Push_swap*.
+ * Excalidraw for brainstorming and structuring ideas.
+ * Understanding the different types of algorithms. [Algomius](https://www.youtube.com/@algomius) on Youtube.
+ * The 42 following students for the time spent discussing ideas, algorithms,
 and optimization strategies:
-    - <Pchasam>, 
-    - <Bamagere>,
-    - <Tseche>
-* AI was used to further research and deepen understanding of new concepts.
+     - `pchazalm` 
+     - `bamagere`
+     - `tseche`
+ * AI was used to further research and deepen understanding of new concepts.
 
+
+[Top](#push_swap)
