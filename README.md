@@ -1,5 +1,6 @@
 [🇫🇷 French](#french)
 
+<a id="english"></a>
 # 🇬🇧 Push_Swap
 
 *This project has been created as part of the 42 curriculum by* _`rcompain`_.
@@ -194,7 +195,7 @@ and optimization strategies:
  * AI was used to further research and deepen understanding of new concepts.
 
 
-[Top](#push_swap)
+[🇬🇧  TOP](#english)
 
 
 <a id="french"></a>
@@ -205,9 +206,9 @@ and optimization strategies:
 ## Sommaire
 
  - [Description](#descriptionfr)
- - [Instructions](#instructionsfr)
+ - [Instructions](#instructionfr)
    - [Compilation](#compilationfr)
-   - [Exécution](#exécutionfr)
+   - [Exécution](#executionfr)
  - [Opérations autorisées](#operationsfr)
  - [Aperçu de l'algorithme](#algofr)
    - [Indexation](#indexationfr)
@@ -272,8 +273,11 @@ Pour tout supprimer et recompiler :
 ```bash
 make re
 ```
+
+---
+
 <a id="executionfr"></a>
-## Exécution
+### Exécution
 
 Lancez le programme avec une liste d’entiers en arguments :
 
@@ -405,4 +409,4 @@ des algorithmes et des stratégies d’optimisation :
  * L’IA a été utilisée pour approfondir les recherches et améliorer la
 compréhension de nouveaux concepts.
 
-[TOP](#french)
+[🇫🇷  TOP](#french)  [🇬🇧  TOP](#english)
