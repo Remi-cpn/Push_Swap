@@ -197,14 +197,14 @@ and optimization strategies:
 [Top](#push_swap)
 
 
-
+# <🇫🇷 French>
 # 🇫🇷 Push_Swap
 
 *Ce projet a été créé dans le cadre du cursus 42 par* _`rcompain`_.
 
 ## Sommaire
 
- - [Description](#description.)
+ - [Description](#-description)
  - [Instructions](#instructions)
    - [Compilation](#compilation)
    - [Exécution](#exécution)
@@ -221,7 +221,7 @@ and optimization strategies:
 
 ---
 
-## Description.
+## -Description.
 
 **Push_swap** est un projet algorithmique dont l'objectif est de trier une pile d'entiers 
 en utilisant un nombre limité d'instructions et le moins d'opérations possible.
