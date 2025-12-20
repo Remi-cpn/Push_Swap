@@ -6,12 +6,15 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 15:04:51 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/19 14:36:36 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/20 13:53:35 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/**
+ * This function free and sets to null.
+ */
 void	free_and_null(void *p)
 {
 	free(p);

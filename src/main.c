@@ -6,7 +6,7 @@
 /*   By: rcompain <rcompain@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:16:38 by rcompain          #+#    #+#             */
-/*   Updated: 2025/12/19 19:23:30 by rcompain         ###   ########.fr       */
+/*   Updated: 2025/12/20 13:52:51 by rcompain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ static void	print_lst(t_list *lst)
 	}
 }
 
+/**
+ * This function calls the algorithm function, the optimization function, and 
+ * then the function to print the instructions.
+ **/
 static int	algo_waver(t_stack *map, t_stack *b)
 {
 	t_list	*lst;

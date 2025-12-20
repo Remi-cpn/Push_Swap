@@ -209,7 +209,7 @@ and optimization strategies:
  - [Instructions](#instructionfr)
    - [Compilation](#compilationfr)
    - [Exécution](#executionfr)
- - [Opérations autorisées](#operationsfr)
+ - [Opérations autorisées](#operationfr)
  - [Aperçu de l'algorithme](#algofr)
    - [Indexation](#indexationfr)
    - [Optimisation pour petites piles](#optifr)
