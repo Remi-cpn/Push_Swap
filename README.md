@@ -200,28 +200,28 @@ and optimization strategies:
 <a id="french"></a>
 # 🇫🇷 Push_Swap
 
-*Ce projet a été créé dans le cadre du cursus 42 par* _`rcompain`_.
+*Ce projet a été créé dans le cadre du cursus 42 par *`rcompain`*.
 
 ## Sommaire
 
- - [Description](#-description)
- - [Instructions](#instructions)
-   - [Compilation](#compilation)
-   - [Exécution](#exécution)
- - [Opérations autorisées](#opérations-autorisées)
- - [Aperçu de l'algorithme](#aperçu-de-lalgorithme)
-   - [Indexation](#indexation)
-   - [Optimisation pour petites piles](#optimisation-pour-petites-piles)
-   - [Push par chunks vers la pile B (Algorithme Papillon)](#push-par-chunks-vers-la-pile-b-algorithme-papillon)
-   - [Calcul du coût et réinsertion dans la pile A](#calcul-du-coût-et-réinsertion-dans-la-pile-a)
-   - [Stockage et optimisation des instructions](#stockage-et-optimisation-des-instructions)
-   - [Rotation finale et sortie](#rotation-finale-et-sortie)
- - [Gestion des erreurs](#gestion-des-erreurs)
- - [Ressources](#ressources)
+ - [Description](#descriptionfr)
+ - [Instructions](#instructionsfr)
+   - [Compilation](#compilationfr)
+   - [Exécution](#exécutionfr)
+ - [Opérations autorisées](#operationsfr)
+ - [Aperçu de l'algorithme](#algofr)
+   - [Indexation](#indexationfr)
+   - [Optimisation pour petites piles](#optifr)
+   - [Push par chunks vers la pile B (Algorithme Papillon)](#papillonfr)
+   - [Calcul du coût et réinsertion dans la pile A](#calculfr)
+   - [Stockage et optimisation des instructions](#stockagefr)
+   - [Rotation finale et sortie](#rotationfr)
+ - [Gestion des erreurs](#erreurfr)
+ - [Ressources](#ressourcesfr)
 
 ---
-
-## -Description.
+<a id="descriptionfr"></a>
+## Description.
 
 **Push_swap** est un projet algorithmique dont l'objectif est de trier une pile d'entiers 
 en utilisant un nombre limité d'instructions et le moins d'opérations possible.
@@ -237,11 +237,172 @@ de le faire efficacement, en minimisant le nombre total d'opérations.
 
 ---
 
+<a id="instructionfr"></a>
 ## Instructions
 
+<a id="compilationfr"></a>
 ### Compilation
 
 Pour compiler ce projet, exécutez :
 
 ```bash
 make
+```
+
+Cela générera un exécutable nommé :
+
+```text
+push_swap
+```
+
+Pour supprimer les fichiers objets :
+
+```bash
+make clean
+```
+
+Pour supprimer l’exécutable et les fichiers objets :
+
+```bash
+make fclean
+```
+
+Pour tout supprimer et recompiler :
+
+```bash
+make re
+```
+<a id="executionfr"></a>
+## Exécution
+
+Lancez le programme avec une liste d’entiers en arguments :
+
+```bash
+./push_swap 3 2 1
+```
+Le programme affichera une suite d’instructions permettant de trier la pile.
+
+<a id="operationfr"></a>
+## Opérations autorisées
+
+Le programme utilise les opérations suivantes :
+
+* `sa` → échange les deux premiers éléments de la pile a.
+* `pa`, `pb` → push un élément d’une pile vers l’autre.
+* `ra`, `rb`, `rr` → fait une rotation de la pile a, de la pile b ou des deux en même temps.
+* `rra`, `rrb`, `rrr` → fait une rotation inverse de la pile a, de la pile b ou des deux en même temps.
+
+<a id="algofr"></a>
+## Présentation de l’algorithme
+
+L’algorithme est structuré en plusieurs étapes afin d’assurer à la fois la 
+justesse du tri et l’efficacité en nombre d’opérations.
+
+<a id="indexationfr"></a>
+### Indexation des valeurs
+
+Toutes les valeurs de **stack A** sont d’abord converties dans une plage
+d’indices normalisée. Cette version indexée de la pile, appelée **map**,
+permet à l’algorithme de travailler sur des ordres relatifs plutôt que sur
+les valeurs entières brutes, ce qui simplifie les comparaisons et la prise
+de décision.
+
+<a id="optifr"></a>
+### Optimisation pour les petites piles
+
+Si la taille de **stack A** est inférieure ou égale à 5, un algorithme dédié
+appelé **tiny_sort** est utilisé.
+Cette logique de tri spécialisée garantit un nombre optimal d’opérations
+pour les petites entrées.
+
+<a id="papillonfr"></a>
+### Envoi par blocs vers la pile B (algorithme du papillon)
+
+Pour des entrées plus importantes, tous les éléments de stack A sont
+envoyés vers stack B à l’aide d’une stratégie par blocs, communément
+appelée l’algorithme du butterfly.
+
+ * Les valeurs indexées sont divisées en blocs.
+ * Les éléments appartenant au bloc courant sont poussés de stack A vers stack B.
+ * La moitié basse du bloc est poussée avec `pb`.
+ * La moitié haute est poussée avec `pb` suivie de `rb`.
+
+Cette technique permet de répartir les valeurs de manière équilibrée dans
+stack B, en préparant une réinsertion efficace dans **stack A**.
+
+<a id="calculfr"></a>
+### Calcul des coûts et réinsertion dans la pile A
+
+Pour rapatrier les valeurs de stack B vers stack A, l’algorithme
+calcule le coût de réinsertion pour chaque élément présent dans stack B.
+
+Pour chaque valeur, tous les scénarios possibles de rotations sont évalués :
+
+ * `ra` + `rb`
+ * `rra` + `rrb`
+ * `ra` + `rrb`
+ * `rra` + `rb`
+
+L’élément ayant le coût total le plus faible est sélectionné et poussé dans
+**stack A**. Ce processus est répété jusqu’à ce que **stack B** soit vide.
+
+<a id="stockagefr"></a>
+### Stockage et optimisation des instructions
+
+Toutes les opérations générées sont stockées dans une liste chaînée pendant
+l’exécution.
+Une fois la logique de tri terminée, cette liste est optimisée en :
+
+ * Fusionnant les rotations compatibles en `rr`.
+ * Fusionnant les rotations inverses en `rrr`.
+ * Supprimant les paires d’instructions redondantes, comme `pb` suivi
+immédiatement de `pa`.
+
+Cette phase d’optimisation réduit le nombre total d’opérations sans modifier
+le résultat du tri.
+
+<a id="rotationfr"></a>
+### Rotation finale et affichage
+
+Après la réinsertion de tous les éléments, **stack A** est tournée afin de
+placer la plus petite valeur en haut de la pile.
+
+Enfin, la liste optimisée d’instructions est écrite sur la sortie standard,
+représentant la solution finale.
+
+---
+
+<a id="erreurfr"></a>
+## Gestion des erreurs
+
+Le programme gère les erreurs suivantes :
+
+ * Arguments non numériques.
+ * Nombres en double.
+ * Dépassement ou sous-dépassement d’entier.
+ * Format d’entrée invalide.
+
+En cas d’erreur, le programme affiche :
+
+```text
+Error
+```
+
+---
+
+<a id="ressourcesfr"></a>
+## Ressources
+
+ * Sujet PDF 42 : *Push_swap*
+ * Excalidraw pour le brainstorming et la structuration des idées.
+ * Compréhension des différents types d’algorithmes : chaîne YouTube
+Algomius.
+ * Les étudiants de 42 suivants pour le temps passé à discuter des idées,
+des algorithmes et des stratégies d’optimisation :
+    * `pchazalm`
+    * `bamagere`
+    * `tseche`
+ * L’IA a été utilisée pour approfondir les recherches et améliorer la
+compréhension de nouveaux concepts.
+
+[TOP](#french)
