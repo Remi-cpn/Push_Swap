@@ -201,7 +201,7 @@ and optimization strategies:
 <a id="french"></a>
 # 🇫🇷 Push_Swap
 
-*Ce projet a été créé dans le cadre du cursus 42 par *`rcompain`*.
+*Ce projet a été créé dans le cadre du cursus 42 par* *`rcompain`*.
 
 ## Sommaire
 
